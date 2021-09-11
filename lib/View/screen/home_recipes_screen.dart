@@ -35,6 +35,8 @@ class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
       ),
       body: ItemRecipes(),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: purplish_blue,
+
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.menu_book_outlined), label: "Recipes"),
           BottomNavigationBarItem(icon: Icon(Icons.star), label: "Favorites"),
