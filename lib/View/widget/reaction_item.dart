@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ReactionItem extends StatelessWidget {
-  int number = 0;
+  int? aggregateLikes = 0;
+  int? readyInMinutes = 0;
   bool vegan = false;
 
-  ReactionItem({required this.number, required this.vegan});
+
+  ReactionItem({required this.aggregateLikes, required this.readyInMinutes, required this.vegan});
 
   Color textColorVegan(bool vegan) {
     return vegan ? textColorVeganOn : textColorVeganOff;
@@ -19,14 +21,14 @@ class ReactionItem extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       subReaction(
           icon: '$icons/favorite.svg',
-          number: number,
+          number: aggregateLikes,
           textColor: textColorFavorite),
 
       SizedBox(width: 10,),
 
       subReaction(
           icon: '$icons/schedule.svg',
-          number: number,
+          number: readyInMinutes,
           textColor: textColorSchedule),
 
       SizedBox(width: 10,),
