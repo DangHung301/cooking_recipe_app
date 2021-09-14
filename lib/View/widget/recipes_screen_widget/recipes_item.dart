@@ -2,7 +2,7 @@ import 'package:cooking_recipe_app/Helper/constan/assets.dart';
 import 'package:cooking_recipe_app/Model/recipes.dart';
 import 'package:cooking_recipe_app/Service/fetch_data_recipes.dart';
 import 'package:cooking_recipe_app/View/screen/details_screen.dart';
-import 'package:cooking_recipe_app/View/widget/reaction_item.dart';
+import 'package:cooking_recipe_app/View/widget/recipes_screen_widget/reaction_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

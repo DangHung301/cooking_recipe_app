@@ -33,6 +33,7 @@ dependencies:
   image_res: ^0.3.0
   flutter_svg: ^0.22.0
   rxdart: ^0.27.2
+  fluttertoast: ^8.0.8
 
 dev_dependencies:
   flutter_test:
