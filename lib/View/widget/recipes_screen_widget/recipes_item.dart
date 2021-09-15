@@ -15,7 +15,7 @@ class _RecipesItemState extends State<RecipesItem> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return FutureBuilder(
+    return FutureBuilder( 
         future: FetchDataRecipes.fetchRecipes(),
         builder: (context, AsyncSnapshot<List<Recipes>> snapshot) {
           if (snapshot.hasError) {

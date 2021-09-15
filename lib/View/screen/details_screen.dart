@@ -1,5 +1,10 @@
+import 'dart:developer';
+import 'dart:math';
+
 import 'package:cooking_recipe_app/Helper/constan/color.dart';
 import 'package:cooking_recipe_app/View/widget/custom_toast_dialog.dart';
+import 'package:cooking_recipe_app/View/widget/details_screen_wiget/ingredients_tabar_details.dart';
+import 'package:cooking_recipe_app/View/widget/details_screen_wiget/instruction_tabar_details.dart';
 import 'package:cooking_recipe_app/View/widget/details_screen_wiget/overview_tabar_details.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -56,8 +61,8 @@ class _DetailsScreenState extends State<DetailsScreen>
         controller: _tabController,
         children: [
           OverviewTabarDetails(),
-          OverviewTabarDetails(),
-          OverviewTabarDetails(),
+          IngredientsTabarDetails(),
+          InstructionTabarDetails(),
         ],
       ),
     );

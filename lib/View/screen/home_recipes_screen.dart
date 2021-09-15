@@ -11,18 +11,24 @@ class HomeRecipesScreen extends StatefulWidget {
 }
 
 class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
-  int _currentIndex = 0;
-
-  static const List<Widget> _widgetOption = <Widget>[
-    Text('nac'),
+  int _selectedIndex = 0;
+  static List<Widget> _widgetOption = <Widget>[
+    RecipesItem(),
     Text('ascas'),
     Text('vasva'),
   ];
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      appBar: _currentIndex == 0
+      appBar: _selectedIndex == 0
           ? AppBar(
               backgroundColor: bgrFoatingButton,
               automaticallyImplyLeading: false,
@@ -33,7 +39,7 @@ class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
                     onPressed: () {}, icon: Icon(Icons.filter_list_outlined)),
               ],
             )
-          : _currentIndex == 1
+          : _selectedIndex == 1
               ? AppBar(
                   backgroundColor: bgrFoatingButton,
                   automaticallyImplyLeading: false,
@@ -54,7 +60,7 @@ class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
                         icon: Icon(Icons.share)),
                   ],
                 ),
-      body: RecipesItem(),
+      body: _widgetOption.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: bgrFoatingButton,
         items: [
@@ -64,12 +70,8 @@ class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
           BottomNavigationBarItem(
               icon: Icon(Icons.alternate_email_outlined), label: "Joke"),
         ],
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
