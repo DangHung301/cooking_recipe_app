@@ -9,8 +9,10 @@ class ReactionItem extends StatelessWidget {
   int? readyInMinutes = 0;
   bool vegan = false;
 
-
-  ReactionItem({required this.aggregateLikes, required this.readyInMinutes, required this.vegan});
+  ReactionItem(
+      {required this.aggregateLikes,
+      required this.readyInMinutes,
+      required this.vegan});
 
   Color textColorVegan(bool vegan) {
     return vegan ? textColorVeganOn : textColorVeganOff;
@@ -23,16 +25,16 @@ class ReactionItem extends StatelessWidget {
           icon: '$icons/favorite.svg',
           number: aggregateLikes,
           textColor: textColorFavorite),
-
-      SizedBox(width: 10,),
-
+      SizedBox(
+        width: 10,
+      ),
       subReaction(
           icon: '$icons/schedule.svg',
           number: readyInMinutes,
           textColor: textColorSchedule),
-
-      SizedBox(width: 10,),
-
+      SizedBox(
+        width: 10,
+      ),
       Column(children: [
         vegan
             ? Image.asset(
@@ -59,7 +61,9 @@ Widget subReaction({String? icon, int? number, Color? textColor}) {
     children: [
       SvgPicture.asset(
         '$icon',
-      height: 20, width: 20,),
+        height: 20,
+        width: 20,
+      ),
       Text(
         '$number',
         style: TextStyle(color: textColor, fontSize: 10),

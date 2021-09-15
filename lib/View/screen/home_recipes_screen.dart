@@ -1,4 +1,8 @@
 import 'package:cooking_recipe_app/Helper/constan/color.dart';
+import 'package:cooking_recipe_app/View/screen/favorite_has_data_screen.dart';
+import 'package:cooking_recipe_app/View/screen/favorited_none_data_screen.dart';
+import 'package:cooking_recipe_app/View/screen/joke_screen.dart';
+import 'package:cooking_recipe_app/View/widget/details_screen_wiget/deltails_non_connect.dart';
 import 'package:cooking_recipe_app/View/widget/recipes_screen_widget/recipes_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,8 +18,8 @@ class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
   int _selectedIndex = 0;
   static List<Widget> _widgetOption = <Widget>[
     RecipesItem(),
-    Text('ascas'),
-    Text('vasva'),
+    FavoriteNoneDataScreen(),
+    JokeScreen()
   ];
 
   void _onItemTapped(int index) {
