@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:cooking_recipe_app/View/screen/home_recipes_screen.dart';
+import 'package:cooking_recipe_app/View/screen/home_rescreen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget{
