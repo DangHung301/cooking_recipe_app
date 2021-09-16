@@ -4,7 +4,6 @@ import 'package:cooking_recipe_app/View/screen/joke_screen.dart';
 import 'package:cooking_recipe_app/View/screen/recipes_screen.dart';
 import 'package:flutter/material.dart';
 
-
 class HomeRecipesScreen extends StatefulWidget {
   @override
   _HomeRecipesScreenState createState() => _HomeRecipesScreenState();
