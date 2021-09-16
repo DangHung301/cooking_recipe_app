@@ -21,7 +21,7 @@ class FavoriteHasDataScreen extends StatelessWidget{
         ],
       ),
 
-      body: RecipesScreen(),
+      body: Text('naskcn'),
     );
   }
 

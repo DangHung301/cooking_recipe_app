@@ -18,5 +18,3 @@ class RecipesViewModel{
     _subject.close();
   }
 }
-
-final recipesViewModel = RecipesViewModel();

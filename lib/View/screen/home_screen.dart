@@ -2,17 +2,18 @@ import 'package:cooking_recipe_app/Helper/constan/color.dart';
 import 'package:cooking_recipe_app/View/screen/favorited_none_data_screen.dart';
 import 'package:cooking_recipe_app/View/screen/joke_screen.dart';
 import 'package:cooking_recipe_app/View/screen/recipes_screen.dart';
+import 'package:cooking_recipe_app/ViewModel/recipes_viewmodel.dart';
 import 'package:flutter/material.dart';
 
-class HomeRecipesScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _HomeRecipesScreenState createState() => _HomeRecipesScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   static List<Widget> _widgetOption = <Widget>[
-    RecipesScreen(),
+    RecipesScreen(recipesViewModel: RecipesViewModel()),
     FavoriteNoneDataScreen(),
     JokeScreen()
   ];

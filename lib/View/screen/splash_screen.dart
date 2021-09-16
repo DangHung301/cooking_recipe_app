@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigator(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeRecipesScreen()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
   }
 
   @override
