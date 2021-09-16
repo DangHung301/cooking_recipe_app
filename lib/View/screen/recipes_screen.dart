@@ -8,6 +8,11 @@ import 'package:cooking_recipe_app/ViewModel/recipes_viewmodel.dart';
 import 'package:flutter/material.dart';
 
 class RecipesScreen extends StatefulWidget {
+  final RecipesViewModel recipesViewModel;
+
+
+  RecipesScreen({required this.recipesViewModel});
+
   @override
   _RecipesItemState createState() => _RecipesItemState();
 }
@@ -16,7 +21,13 @@ class _RecipesItemState extends State<RecipesScreen> {
   @override
   void initState() {
     super.initState();
-    recipesViewModel.fetchRecipes();
+    widget.recipesViewModel.fetchRecipes();
+  }
+
+  @override
+  void dispose() {
+    widget.recipesViewModel.dispose();
+    super.dispose();
   }
 
   @override
@@ -35,7 +46,7 @@ class _RecipesItemState extends State<RecipesScreen> {
           ],
         ),
         body: StreamBuilder(
-            stream: recipesViewModel.subject.stream,
+            stream: widget.recipesViewModel.subject.stream,
             builder:
                 (BuildContext context, AsyncSnapshot<List<Recipes>> snapshot) {
               if (snapshot.hasError) {
@@ -68,5 +79,4 @@ class _RecipesItemState extends State<RecipesScreen> {
                   : Center(child: CircularProgressIndicator());
             }));
   }
-
 }

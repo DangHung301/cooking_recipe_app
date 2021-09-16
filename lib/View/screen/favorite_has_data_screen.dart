@@ -1,7 +1,6 @@
 import 'package:cooking_recipe_app/Helper/constan/color.dart';
-import 'package:cooking_recipe_app/Model/recipes.dart';
 import 'package:cooking_recipe_app/View/screen/recipes_screen.dart';
-import 'package:cooking_recipe_app/View/widget/recipes_screen_widget/recipes_item.dart';
+import 'package:cooking_recipe_app/ViewModel/recipes_viewmodel.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteHasDataScreen extends StatelessWidget{
@@ -21,8 +20,7 @@ class FavoriteHasDataScreen extends StatelessWidget{
         ],
       ),
 
-      body: RecipesScreen(),
+      body: RecipesScreen(recipesViewModel: RecipesViewModel(),),
     );
   }
-
 }
