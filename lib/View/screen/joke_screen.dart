@@ -9,7 +9,7 @@ class JokeScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: bgrFoatingButton,
+          // backgroundColor: bgrFoatingButton,
           automaticallyImplyLeading: false,
           title: Text('Food joke'),
           actions: [

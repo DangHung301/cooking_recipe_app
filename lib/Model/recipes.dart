@@ -1,11 +1,11 @@
 class Recipes{
   bool vegan;
-  int aggregateLikes;
-  int id;
-  String title;
-  int readyInMinutes;
-  String image;
-  String summary;
+  int? aggregateLikes;
+  int? id;
+  String? title;
+  int? readyInMinutes;
+  String? image;
+  String? summary;
 
 
   Recipes({required this.vegan, required this.aggregateLikes, required this.id, required this.title,

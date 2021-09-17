@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 class RecipesItem extends StatelessWidget {
   bool vegan;
-  int aggregateLikes;
-  int id;
-  String title;
-  int readyInMinutes;
-  String image;
-  String summary;
+  int? aggregateLikes;
+  int? id;
+  String? title;
+  int? readyInMinutes;
+  String? image;
+  String? summary;
 
   RecipesItem({required this.vegan, required this.aggregateLikes, required this.id, required this.title,
       required this.readyInMinutes, required this.image, required this.summary});
@@ -18,8 +18,8 @@ class RecipesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      decoration: BoxDecoration(
-          border: Border.all(width: 1, color: Colors.grey.withOpacity(0.3)),
+      decoration:  BoxDecoration(
+          border: Border.all(width: 1 , color: Colors.grey.withOpacity(0.3)),
           borderRadius: BorderRadius.circular(10)),
       height: size.height * 0.2,
       margin: EdgeInsets.all(10),

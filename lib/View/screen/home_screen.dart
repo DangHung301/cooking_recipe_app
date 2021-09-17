@@ -40,7 +40,10 @@ class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
           currentIndex: _selectedIndex,
           onTap: _onItemTapped),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+          });
+        },
         child: Icon(Icons.restaurant),
         backgroundColor: bgrFoatingButton,
       ),
