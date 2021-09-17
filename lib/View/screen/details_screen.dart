@@ -29,7 +29,7 @@ class _DetailsScreenState extends State<DetailsScreen>
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: bgrFoatingButton,
+        // backgroundColor: bgrFoatingButton,
         title: Text(
           'Details',
         ),

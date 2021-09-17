@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 class RecipesScreen extends StatefulWidget {
   final RecipesViewModel recipesViewModel;
 
-
   RecipesScreen({required this.recipesViewModel});
 
   @override
@@ -20,8 +19,8 @@ class RecipesScreen extends StatefulWidget {
 class _RecipesItemState extends State<RecipesScreen> {
   @override
   void initState() {
-    super.initState();
     widget.recipesViewModel.fetchRecipes();
+    super.initState();
   }
 
   @override
@@ -36,7 +35,7 @@ class _RecipesItemState extends State<RecipesScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: bgrFoatingButton,
+          // backgroundColor: bgrFoatingButton,
           automaticallyImplyLeading: false,
           title: Text('Recipes'),
           actions: [
@@ -61,13 +60,12 @@ class _RecipesItemState extends State<RecipesScreen> {
                           child: RecipesItem(
                               vegan: snapshot.data![index].vegan,
                               aggregateLikes:
-                                  snapshot.data![index].aggregateLikes,
-                              id: snapshot.data![index].id,
-                              title: '${snapshot.data![index].title}',
-                              readyInMinutes:
-                                  snapshot.data![index].readyInMinutes,
-                              image: '${snapshot.data![index].image}',
-                              summary: '${snapshot.data![index].summary}'),
+                                  snapshot.data?[index].aggregateLikes,
+                              id: snapshot.data?[index].id,
+                              title: '${snapshot.data?[index].title}',
+                              readyInMinutes: snapshot.data?[index].readyInMinutes,
+                              image: '${snapshot.data?[index].image}',
+                              summary: '${snapshot.data?[index].summary}'),
                           onTap: () {
                             Navigator.push(
                                 context,

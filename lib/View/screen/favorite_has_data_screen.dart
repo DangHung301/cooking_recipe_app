@@ -10,7 +10,7 @@ class FavoriteHasDataScreen extends StatelessWidget{
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: bgrFoatingButton,
+        // backgroundColor: bgrFoatingButton,
         automaticallyImplyLeading: false,
         title: Text('Favorite Recipes'),
         actions: [
