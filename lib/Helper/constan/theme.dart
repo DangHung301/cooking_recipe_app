@@ -7,7 +7,7 @@ ThemeData lightMode = ThemeData(
   primaryColor: bgrlighMode,
   canvasColor: bgrlighMode,
   appBarTheme: AppBarTheme(
-    backgroundColor: bgrlighMode,
+    backgroundColor: bgrFoatingButton,
     brightness: Brightness.light,
   ),
 );
@@ -20,6 +20,8 @@ ThemeData lightMode = ThemeData(
    ).apply(
      bodyColor: Colors.white,
      displayColor: Colors.blue,
+
+
    ),
 
     cardTheme: CardTheme(color: Colors.black),

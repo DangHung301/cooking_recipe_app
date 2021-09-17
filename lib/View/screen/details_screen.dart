@@ -2,14 +2,22 @@ import 'dart:developer';
 import 'dart:math';
 
 import 'package:cooking_recipe_app/Helper/constan/color.dart';
+import 'package:cooking_recipe_app/Service/fetch_data_overview.dart';
 import 'package:cooking_recipe_app/View/widget/custom_toast_dialog.dart';
 import 'package:cooking_recipe_app/View/widget/details_screen_wiget/ingredients_tabar_details.dart';
 import 'package:cooking_recipe_app/View/widget/details_screen_wiget/instruction_tabar_details.dart';
 import 'package:cooking_recipe_app/View/widget/details_screen_wiget/overview_tabar_details.dart';
+import 'package:cooking_recipe_app/ViewModel/ingredient_viewmodel.dart';
+import 'package:cooking_recipe_app/ViewModel/instructions_viewmodel.dart';
+import 'package:cooking_recipe_app/ViewModel/overview_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class DetailsScreen extends StatefulWidget {
+  int recipeId;
+
+  DetailsScreen({required this.recipeId});
+
   @override
   _DetailsScreenState createState() => _DetailsScreenState();
 }
@@ -27,6 +35,7 @@ class _DetailsScreenState extends State<DetailsScreen>
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    print(widget.recipeId);
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: bgrFoatingButton,
@@ -60,9 +69,9 @@ class _DetailsScreenState extends State<DetailsScreen>
       body: TabBarView(
         controller: _tabController,
         children: [
-          OverviewTabarDetails(),
-          IngredientsTabarDetails(),
-          InstructionTabarDetails(),
+          OverviewTabarDetails(recipesId: widget.recipeId, overviewViewModel: OverviewViewModel(),),
+          IngredientsTabarDetails(id: widget.recipeId, ingredientViewModel: IngredientViewModel(),),
+          InstructionTabarDetails(id: widget.recipeId, instructionViewmodel: InstructionViewmodel(),),
         ],
       ),
     );

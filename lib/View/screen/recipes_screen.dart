@@ -1,4 +1,5 @@
 import 'package:connectivity/connectivity.dart';
+import 'package:cooking_recipe_app/Helper/config/remove_text_html.dart';
 import 'package:cooking_recipe_app/Helper/constan/color.dart';
 import 'package:cooking_recipe_app/Model/recipes.dart';
 import 'package:cooking_recipe_app/Service/fetch_data_recipes.dart';
@@ -46,8 +47,7 @@ class _RecipesItemState extends State<RecipesScreen> {
         ),
         body: StreamBuilder(
             stream: widget.recipesViewModel.subject.stream,
-            builder:
-                (BuildContext context, AsyncSnapshot<List<Recipes>> snapshot) {
+            builder: (BuildContext context, AsyncSnapshot<List<Recipes>> snapshot) {
               if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
@@ -65,12 +65,15 @@ class _RecipesItemState extends State<RecipesScreen> {
                               title: '${snapshot.data?[index].title}',
                               readyInMinutes: snapshot.data?[index].readyInMinutes,
                               image: '${snapshot.data?[index].image}',
-                              summary: '${snapshot.data?[index].summary}'),
+                              summary: removeAllHtmlTags('${snapshot.data?[index].summary}')),
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => DetailsScreen()));
+                                    builder: (context) => DetailsScreen(recipeId: snapshot.data![index].id,)));
+                            setState(() {
+
+                            });
                           },
                         );
                       })

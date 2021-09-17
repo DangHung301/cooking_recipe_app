@@ -1,22 +1,66 @@
+import 'package:cooking_recipe_app/Model/instruction.dart';
+import 'package:cooking_recipe_app/ViewModel/ingredient_viewmodel.dart';
+import 'package:cooking_recipe_app/ViewModel/instructions_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class InstructionTabarDetails extends StatelessWidget {
+class InstructionTabarDetails extends StatefulWidget {
+  int id;
+  InstructionViewmodel instructionViewmodel;
+
+  InstructionTabarDetails(
+      {required this.id, required this.instructionViewmodel});
+
+  @override
+  _InstructionTabarDetailsState createState() =>
+      _InstructionTabarDetailsState();
+}
+
+class _InstructionTabarDetailsState extends State<InstructionTabarDetails> {
+  @override
+  void initState() {
+    widget.instructionViewmodel.getDataInstruction(widget.id);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    widget.instructionViewmodel.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return ListView.builder(
-        itemCount: 4,
-        itemBuilder: (context, index) {
-          return _itemStep(step: index, title: 'a', content: 'baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', size: size);
-        });
+    return StreamBuilder(
+      stream: widget.instructionViewmodel.subject.stream,
+      builder: (context, AsyncSnapshot<List<Instructions>> snapshot) {
+        if (snapshot.hasError) {
+          return Text('${snapshot.hasError.toString()}');
+        }
+
+        return snapshot.hasData
+            ? ListView.builder(
+                itemCount: snapshot.data?.length,
+                itemBuilder: (context, index) {
+                  return _itemStep(
+                      step: snapshot.data?[index].number,
+                      title: '',
+                      content: snapshot.data?[index].step,
+                      size: size);
+                })
+            : Center(
+                child: CircularProgressIndicator(),
+              );
+      },
+    );
   }
 }
 
 Widget _itemStep(
-    {required int step,
+    {required int? step,
     required String title,
-    required String content,
+    required String? content,
     required Size size}) {
   return Container(
     padding: EdgeInsets.symmetric(vertical: 10),
@@ -34,15 +78,15 @@ Widget _itemStep(
             child: Row(children: [
               Container(
                 width: size.width * 0.2,
-                child: Icon(Icons.check_circle_rounded,
-                    color: Colors.green),
+                child: Icon(Icons.check_circle_rounded, color: Colors.green),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Step $step:',
-                    style: TextStyle(color: Colors.grey.withOpacity(0.7), fontSize: 10),
+                    style: TextStyle(
+                        color: Colors.grey.withOpacity(0.7), fontSize: 10),
                   ),
                   Text(
                     '$title',
@@ -56,7 +100,10 @@ Widget _itemStep(
             child: SingleChildScrollView(
               padding: EdgeInsets.symmetric(horizontal: 15),
               scrollDirection: Axis.vertical,
-              child: Text('$content', style: TextStyle(color: Colors.grey),),
+              child: Text(
+                '$content',
+                style: TextStyle(color: Colors.grey),
+              ),
             )),
       ],
     ),

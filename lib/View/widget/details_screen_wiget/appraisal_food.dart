@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppraisalFood extends StatelessWidget {
-  Size size;
-  int aggregateLikes;
-  int readyInMinutes;
-  String title;
+  int? aggregateLikes;
+  int? readyInMinutes;
+  String? title;
   bool vegetarian;
   bool vegan;
   bool glutenFree;
@@ -13,7 +12,6 @@ class AppraisalFood extends StatelessWidget {
   bool cheap;
 
   AppraisalFood({
-    required this.size,
     required this.aggregateLikes,
     required this.readyInMinutes,
     required this.title,
@@ -27,6 +25,8 @@ class AppraisalFood extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Container(
       width: size.width,
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
