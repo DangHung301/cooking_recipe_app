@@ -1,5 +1,4 @@
- import 'package:flutter/material.dart';
-
+import 'package:flutter/material.dart';
 import 'color.dart';
 
 ThemeData lightMode = ThemeData(
@@ -7,13 +6,12 @@ ThemeData lightMode = ThemeData(
   primaryColor: bgrlighMode,
   canvasColor: bgrlighMode,
   appBarTheme: AppBarTheme(
-    backgroundColor: bgrlighMode,
+    backgroundColor: bgrFoatingButton,
     brightness: Brightness.light,
   ),
 );
 
-
- ThemeData darkMode = ThemeData(
+ThemeData darkMode = ThemeData(
    textTheme: TextTheme(
      bodyText1: TextStyle(),
      bodyText2: TextStyle(),
@@ -31,5 +29,4 @@ ThemeData lightMode = ThemeData(
         backgroundColor: bgrDarkMode,
         brightness: Brightness.dark
     )
-
 );

@@ -1,7 +1,7 @@
 class Recipes{
   bool vegan;
   int? aggregateLikes;
-  int? id;
+  int id;
   String? title;
   int? readyInMinutes;
   String? image;
