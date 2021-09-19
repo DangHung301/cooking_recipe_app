@@ -1,5 +1,4 @@
- import 'package:flutter/material.dart';
-
+import 'package:flutter/material.dart';
 import 'color.dart';
 
 ThemeData lightMode = ThemeData(
@@ -12,16 +11,13 @@ ThemeData lightMode = ThemeData(
   ),
 );
 
-
- ThemeData darkMode = ThemeData(
+ThemeData darkMode = ThemeData(
    textTheme: TextTheme(
      bodyText1: TextStyle(),
      bodyText2: TextStyle(),
    ).apply(
      bodyColor: Colors.white,
      displayColor: Colors.blue,
-
-
    ),
 
     cardTheme: CardTheme(color: Colors.black),
@@ -33,5 +29,4 @@ ThemeData lightMode = ThemeData(
         backgroundColor: bgrDarkMode,
         brightness: Brightness.dark
     )
-
 );
