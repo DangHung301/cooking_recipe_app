@@ -17,66 +17,75 @@ class RecipesItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      decoration:  BoxDecoration(
-          border: Border.all(width: 1 , color: Colors.grey.withOpacity(0.3)),
-          borderRadius: BorderRadius.circular(10)),
-      height: size.height * 0.2,
-      margin: EdgeInsets.all(10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Container(
-              height: size.height * 0.2,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    topLeft: Radius.circular(10)),
-                image: DecorationImage(
-                    image: NetworkImage(
-                      '$image',
-                    ),
-                    fit: BoxFit.cover),
-              ),
-            ),
-            flex: 4,
-          ),
-          Expanded(
-              flex: 6,
+    return Card(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Container(
+        decoration:  BoxDecoration(
+            border: Border.all(width: 1 , color: Colors.grey.withOpacity(0.3)),
+            borderRadius: BorderRadius.circular(10),
+
+        ),
+        height: size.height * 0.2,
+        // padding: EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
               child: Container(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Text(
-                        '$title',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 13),
+                height: size.height * 0.2,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      topLeft: Radius.circular(10)),
+                  image: DecorationImage(
+                      image: NetworkImage(
+                        '$image',
                       ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Text(
-                        '$summary',
-                        maxLines: 3,
-                        style: TextStyle(fontSize: 10, color: Colors.grey),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: ReactionItem(
-                        aggregateLikes: aggregateLikes,
-                        readyInMinutes: readyInMinutes,
-                        vegan: vegan,
-                      ),
-                    )
-                  ],
+                      fit: BoxFit.cover),
                 ),
-              ))
-        ],
+              ),
+              flex: 4,
+            ),
+            Expanded(
+                flex: 6,
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          '$title',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 13),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Text(
+                          '$summary',
+                          maxLines: 3,
+                          style: TextStyle(fontSize: 10, color: Colors.grey),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: ReactionItem(
+                          aggregateLikes: aggregateLikes,
+                          readyInMinutes: readyInMinutes,
+                          vegan: vegan,
+                        ),
+                      )
+                    ],
+                  ),
+                ))
+          ],
+        ),
       ),
     );
   }

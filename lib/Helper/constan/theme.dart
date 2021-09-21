@@ -3,7 +3,7 @@ import 'color.dart';
 
 ThemeData lightMode = ThemeData(
   backgroundColor: bgrlighMode,
-  primaryColor: bgrlighMode,
+  primaryColor: bgrAppBar,
   canvasColor: bgrlighMode,
   appBarTheme: AppBarTheme(
     backgroundColor: bgrFoatingButton,
@@ -19,7 +19,6 @@ ThemeData darkMode = ThemeData(
      bodyColor: Colors.white,
      displayColor: Colors.blue,
    ),
-
     cardTheme: CardTheme(color: Colors.black),
     backgroundColor: bgrDarkMode,
     primaryColor: bgrDarkMode,

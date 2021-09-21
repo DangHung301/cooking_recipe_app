@@ -5,12 +5,12 @@ class OverviewRecipes {
   bool dairyFree;
   bool veryHealthy;
   bool cheap;
-  int? aggregateLikes;
-  int? readyInMinutes;
+  int aggregateLikes;
+  int readyInMinutes;
   int id;
-  String? image;
-  String? title;
-  String? summary;
+  String image;
+  String title;
+  String summary;
 
   OverviewRecipes(
       {required this.vegetarian,

@@ -1,12 +1,9 @@
-import 'dart:developer';
-import 'dart:math';
-
-import 'package:cooking_recipe_app/Helper/constan/color.dart';
-import 'package:cooking_recipe_app/Service/fetch_data_overview.dart';
+import 'package:cooking_recipe_app/Model/recipes.dart';
 import 'package:cooking_recipe_app/View/widget/custom_toast_dialog.dart';
 import 'package:cooking_recipe_app/View/widget/details_screen_wiget/ingredients_tabar_details.dart';
 import 'package:cooking_recipe_app/View/widget/details_screen_wiget/instruction_tabar_details.dart';
 import 'package:cooking_recipe_app/View/widget/details_screen_wiget/overview_tabar_details.dart';
+import 'package:cooking_recipe_app/ViewModel/event_recipe_viewmodel.dart';
 import 'package:cooking_recipe_app/ViewModel/ingredient_viewmodel.dart';
 import 'package:cooking_recipe_app/ViewModel/instructions_viewmodel.dart';
 import 'package:cooking_recipe_app/ViewModel/overview_viewmodel.dart';
@@ -14,9 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class DetailsScreen extends StatefulWidget {
-  int recipeId;
-
-  DetailsScreen({required this.recipeId});
+  Recipes recipes;
+  EventRecipeViewmodel eventRecipeViewmodel;
+  bool checkObj;
+  DetailsScreen({required this.recipes, required this.eventRecipeViewmodel, required this.checkObj});
 
   @override
   _DetailsScreenState createState() => _DetailsScreenState();
@@ -30,26 +28,40 @@ class _DetailsScreenState extends State<DetailsScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+    widget.eventRecipeViewmodel.isFavorite(widget.recipes.id);
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    print(widget.recipeId);
+    print(widget.recipes.id);
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: bgrFoatingButton,
         title: Text(
           'Details',
         ),
         actions: [
+
           IconButton(
-              onPressed: () {
-                var fToast = FToast();
-                fToast.init(context);
-                fToast.showToast(child: ToastDialog(size, 'Recipe removed', 'OKEY', fToast));
-              },
-              icon: Icon(Icons.star_border))
+            onPressed: () {
+              var fToast = FToast();
+              fToast.init(context);
+              setState(() {
+                widget.checkObj = !widget.checkObj;
+              });
+
+              if(widget.checkObj){
+                widget.eventRecipeViewmodel.addRecipe(widget.recipes);
+                widget.eventRecipeViewmodel.init();
+                fToast.showToast(child: ToastDialog(size, 'Recipe ADD', 'OKEY', fToast));
+              }else{
+                widget.eventRecipeViewmodel.deleteRecipe(widget.recipes);
+                widget.eventRecipeViewmodel.init();
+                fToast.showToast(child: ToastDialog(size, 'Recipe REMOVE', 'OKE', fToast));
+              }
+
+            },
+            icon: Icon(Icons.star), color: widget.checkObj ? Colors.amber : Colors.grey,)
         ],
         bottom: TabBar(
           controller: _tabController,
@@ -69,9 +81,9 @@ class _DetailsScreenState extends State<DetailsScreen>
       body: TabBarView(
         controller: _tabController,
         children: [
-          OverviewTabarDetails(recipesId: widget.recipeId, overviewViewModel: OverviewViewModel(),),
-          IngredientsTabarDetails(id: widget.recipeId, ingredientViewModel: IngredientViewModel(),),
-          InstructionTabarDetails(id: widget.recipeId, instructionViewmodel: InstructionViewmodel(),),
+          OverviewTabarDetails(recipesId: widget.recipes.id, overviewViewModel: OverviewViewModel(),),
+          IngredientsTabarDetails(id: widget.recipes.id, ingredientViewModel: IngredientViewModel(),),
+          InstructionTabarDetails(id: widget.recipes.id, instructionViewmodel: InstructionViewmodel(),),
         ],
       ),
     );
