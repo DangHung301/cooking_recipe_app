@@ -10,7 +10,6 @@ class FetchDataInstruction{
 
    if(response.statusCode==200){
      final mapResponse = json.decode(response.body) ;
-     final listSteps = mapResponse[0];
 
      for(var i in mapResponse[0]['steps']){
        var infor = Instructions.fromJson(i);

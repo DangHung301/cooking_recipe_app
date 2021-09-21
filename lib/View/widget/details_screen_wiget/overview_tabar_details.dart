@@ -20,14 +20,16 @@ class OverviewTabarDetails extends StatefulWidget {
 class _OverviewTabarDetailsState extends State<OverviewTabarDetails> {
   @override
   void initState() {
-    widget.overviewViewModel.getDataOverview(widget.recipesId);
     super.initState();
+    widget.overviewViewModel.getDataOverview(widget.recipesId);
+
   }
 
   @override
   void dispose() {
-    widget.overviewViewModel.dispose();
     super.dispose();
+    widget.overviewViewModel.dispose();
+
   }
 
   @override
@@ -41,6 +43,21 @@ class _OverviewTabarDetailsState extends State<OverviewTabarDetails> {
           if (snapshot.hasError) {
             return Text('${snapshot.hasError.toString()}');
           }
+
+          final data = snapshot.data ??
+              OverviewRecipes(
+                  vegetarian: false,
+                  vegan: false,
+                  glutenFree: false,
+                  dairyFree: false,
+                  veryHealthy: false,
+                  cheap: false,
+                  aggregateLikes: 0,
+                  readyInMinutes: 0,
+                  id: -1,
+                  image: '$images/no_data_recipes.png',
+                  title: 'Khong co san pham',
+                  summary: 'Khong co san pham');
 
           return snapshot.hasData
               ? SingleChildScrollView(
@@ -78,15 +95,15 @@ class _OverviewTabarDetailsState extends State<OverviewTabarDetails> {
                         ),
                       ),
                       AppraisalFood(
-                        aggregateLikes: snapshot.data!.aggregateLikes,
-                        readyInMinutes: snapshot.data!.readyInMinutes,
-                        title: snapshot.data?.title,
-                        vegetarian: snapshot.data!.vegan,
-                        vegan: snapshot.data!.vegan,
-                        glutenFree: snapshot.data!.glutenFree,
-                        dairyFree: snapshot.data!.dairyFree,
-                        veryHealthy: snapshot.data!.veryHealthy,
-                        cheap: snapshot.data!.cheap,
+                        aggregateLikes: data.aggregateLikes,
+                        readyInMinutes: data.readyInMinutes,
+                        title: data.title,
+                        vegetarian: data.vegan,
+                        vegan: data.vegan,
+                        glutenFree: data.glutenFree,
+                        dairyFree: data.dairyFree,
+                        veryHealthy: data.veryHealthy,
+                        cheap: data.cheap,
                       ),
                       SizedBox(
                         height: 20,

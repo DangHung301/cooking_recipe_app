@@ -2,6 +2,7 @@ import 'package:cooking_recipe_app/Helper/config/remove_text_html.dart';
 import 'package:cooking_recipe_app/Model/recipes.dart';
 import 'package:cooking_recipe_app/View/screen/details_screen.dart';
 import 'package:cooking_recipe_app/View/widget/recipes_screen_widget/recipes_item.dart';
+import 'package:cooking_recipe_app/ViewModel/event_recipe_viewmodel.dart';
 import 'package:cooking_recipe_app/ViewModel/recipes_viewmodel.dart';
 import 'package:flutter/material.dart';
 
@@ -17,23 +18,21 @@ class RecipesScreen extends StatefulWidget {
 class _RecipesItemState extends State<RecipesScreen> {
   @override
   void initState() {
-    widget.recipesViewModel.fetchRecipes();
     super.initState();
+    widget.recipesViewModel.fetchRecipes();
+
   }
 
   @override
   void dispose() {
-    widget.recipesViewModel.dispose();
     super.dispose();
+    widget.recipesViewModel.dispose();
   }
-
+  EventRecipeViewmodel _eventRecipeViewmodel = EventRecipeViewmodel();
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
         appBar: AppBar(
-          // backgroundColor: bgrFoatingButton,
           automaticallyImplyLeading: false,
           title: Text('Recipes'),
           actions: [
@@ -44,33 +43,41 @@ class _RecipesItemState extends State<RecipesScreen> {
         ),
         body: StreamBuilder(
             stream: widget.recipesViewModel.subject.stream,
-            builder: (BuildContext context, AsyncSnapshot<List<Recipes>> snapshot) {
+            builder:
+                (BuildContext context, AsyncSnapshot<List<Recipes>> snapshot) {
               if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
+
+              final datas = snapshot.data ?? [];
+
               print(snapshot.hasData);
-              return snapshot.hasData
+              return datas.isNotEmpty
                   ? ListView.builder(
-                      itemCount: snapshot.data!.length,
+                      itemCount: datas.length,
                       itemBuilder: (context, index) {
                         return InkWell(
                           child: RecipesItem(
-                              vegan: snapshot.data![index].vegan,
-                              aggregateLikes:
-                                  snapshot.data?[index].aggregateLikes,
-                              id: snapshot.data?[index].id,
-                              title: '${snapshot.data?[index].title}',
-                              readyInMinutes: snapshot.data?[index].readyInMinutes,
-                              image: '${snapshot.data?[index].image}',
-                              summary: removeAllHtmlTags('${snapshot.data?[index].summary}')),
-                          onTap: () {
+                              vegan: datas[index].vegan,
+                              aggregateLikes: datas[index].aggregateLikes,
+                              id: datas[index].id,
+                              title: '${datas[index].title}',
+                              readyInMinutes: datas[index].readyInMinutes,
+                              image: '${datas[index].image}',
+                              summary:
+                                  removeAllHtmlTags('${datas[index].summary}')),
+                          onTap: () async{
+                            bool checkObj = await _eventRecipeViewmodel.isFavorite(datas[index].id);
+
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => DetailsScreen(recipeId: snapshot.data![index].id,)));
-                            setState(() {
-
-                            });
+                                    builder: (context) => DetailsScreen(
+                                          recipes:  datas[index],
+                                          eventRecipeViewmodel:
+                                              EventRecipeViewmodel(), checkObj: checkObj),
+                                        ));
+                            setState(() {});
                           },
                         );
                       })

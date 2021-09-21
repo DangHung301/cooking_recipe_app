@@ -1,5 +1,4 @@
 import 'package:cooking_recipe_app/Model/instruction.dart';
-import 'package:cooking_recipe_app/ViewModel/ingredient_viewmodel.dart';
 import 'package:cooking_recipe_app/ViewModel/instructions_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,41 +18,44 @@ class InstructionTabarDetails extends StatefulWidget {
 class _InstructionTabarDetailsState extends State<InstructionTabarDetails> {
   @override
   void initState() {
-    widget.instructionViewmodel.getDataInstruction(widget.id);
     super.initState();
+    widget.instructionViewmodel.getDataInstruction(widget.id);
+
   }
 
   @override
   void dispose() {
-    widget.instructionViewmodel.dispose();
     super.dispose();
+    widget.instructionViewmodel.dispose();
+
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return StreamBuilder(
-      stream: widget.instructionViewmodel.subject.stream,
-      builder: (context, AsyncSnapshot<List<Instructions>> snapshot) {
-        if (snapshot.hasError) {
-          return Text('${snapshot.hasError.toString()}');
-        }
+        stream: widget.instructionViewmodel.subject.stream,
+        builder: (context, AsyncSnapshot<List<Instructions>> snapshot) {
+          if (snapshot.hasError) {
+            return Text('${snapshot.hasError.toString()}');
+          }
 
-        return snapshot.hasData
-            ? ListView.builder(
-                itemCount: snapshot.data?.length,
-                itemBuilder: (context, index) {
-                  return _itemStep(
-                      step: snapshot.data?[index].number,
-                      title: '',
-                      content: snapshot.data?[index].step,
-                      size: size);
-                })
-            : Center(
-                child: CircularProgressIndicator(),
-              );
-      },
-    );
+          final datas = snapshot.data ?? [];
+
+          return datas.isNotEmpty
+              ? ListView.builder(
+                  itemCount: snapshot.data?.length,
+                  itemBuilder: (context, index) {
+                    return _itemStep(
+                        step: snapshot.data?[index].number,
+                        title: '',
+                        content: snapshot.data?[index].step,
+                        size: size);
+                  })
+              : Center(
+                  child: Text('Empty'),
+                );
+        });
   }
 }
 

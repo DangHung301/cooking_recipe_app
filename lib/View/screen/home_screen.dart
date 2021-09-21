@@ -1,7 +1,8 @@
 import 'package:cooking_recipe_app/Helper/constan/color.dart';
-import 'package:cooking_recipe_app/View/screen/favorited_none_data_screen.dart';
+import 'package:cooking_recipe_app/View/screen/favorite_has_data_screen.dart';
 import 'package:cooking_recipe_app/View/screen/joke_screen.dart';
 import 'package:cooking_recipe_app/View/screen/recipes_screen.dart';
+import 'package:cooking_recipe_app/ViewModel/event_recipe_viewmodel.dart';
 import 'package:cooking_recipe_app/ViewModel/recipes_viewmodel.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
   int _selectedIndex = 0;
   static List<Widget> _widgetOption = <Widget>[
     RecipesScreen(recipesViewModel: RecipesViewModel(),),
-    FavoriteNoneDataScreen(),
+    FavoriteHasDataScreen(eventRecipeViewmodel: EventRecipeViewmodel()),
     JokeScreen()
   ];
 
@@ -41,7 +42,14 @@ class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
           onTap: _onItemTapped),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          // showModalBottomSheet(context: context, builder: (BuildContext context){
+          //   return MealTypeWidget();
+          // });
+          EventRecipeViewmodel eventRecipeViewmodel = EventRecipeViewmodel();
+
+          eventRecipeViewmodel.deleteAll();
           setState(() {
+
           });
         },
         child: Icon(Icons.restaurant),
