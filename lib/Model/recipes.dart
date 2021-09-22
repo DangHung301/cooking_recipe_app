@@ -1,3 +1,5 @@
+import 'package:cooking_recipe_app/Helper/constan/assets.dart';
+
 class Recipes {
   bool vegan;
   int? aggregateLikes;
@@ -19,7 +21,7 @@ class Recipes {
       id: json['id'],
       title: json['title'],
       readyInMinutes: json['readyInMinutes'],
-      image: json['image'],
+      image: json['image'] ?? '$images/background.png',
       summary: json['summary'],
     );
   }

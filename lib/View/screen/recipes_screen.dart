@@ -1,10 +1,16 @@
 import 'package:cooking_recipe_app/Helper/config/remove_text_html.dart';
+import 'package:cooking_recipe_app/Helper/constan/color.dart';
 import 'package:cooking_recipe_app/Model/recipes.dart';
 import 'package:cooking_recipe_app/View/screen/details_screen.dart';
+import 'package:cooking_recipe_app/View/widget/buttom_sheet_widget/button_sheet_widget.dart';
+import 'package:cooking_recipe_app/View/widget/buttom_sheet_widget/filter_widget.dart';
 import 'package:cooking_recipe_app/View/widget/recipes_screen_widget/recipes_item.dart';
 import 'package:cooking_recipe_app/ViewModel/event_recipe_viewmodel.dart';
+import 'package:cooking_recipe_app/ViewModel/floating_buttom_viewmodel.dart';
 import 'package:cooking_recipe_app/ViewModel/recipes_viewmodel.dart';
 import 'package:flutter/material.dart';
+
+enum RecipeStatus { search, recipes }
 
 class RecipesScreen extends StatefulWidget {
   final RecipesViewModel recipesViewModel;
@@ -16,30 +22,33 @@ class RecipesScreen extends StatefulWidget {
 }
 
 class _RecipesItemState extends State<RecipesScreen> {
+  RecipeStatus recipeStatus = RecipeStatus.recipes;
+
   @override
   void initState() {
     super.initState();
     widget.recipesViewModel.fetchRecipes();
-
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    widget.recipesViewModel.dispose();
-  }
   EventRecipeViewmodel _eventRecipeViewmodel = EventRecipeViewmodel();
+  Icon customIcon = const Icon(Icons.search);
+  Widget customSearchBar = const Text('My Personal Journal');
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text('Recipes'),
-          actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-            IconButton(
-                onPressed: () {}, icon: Icon(Icons.filter_list_outlined)),
-          ],
+        appBar: appBar(size),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  return ButtonSheetWidget();
+                });
+          },
+          child: Icon(Icons.restaurant),
+          backgroundColor: bgrFoatingButton,
         ),
         body: StreamBuilder(
             stream: widget.recipesViewModel.subject.stream,
@@ -66,22 +75,77 @@ class _RecipesItemState extends State<RecipesScreen> {
                               image: '${datas[index].image}',
                               summary:
                                   removeAllHtmlTags('${datas[index].summary}')),
-                          onTap: () async{
-                            bool checkObj = await _eventRecipeViewmodel.isFavorite(datas[index].id);
+                          onTap: () async {
+                            bool checkObj = await _eventRecipeViewmodel
+                                .isFavorite(datas[index].id);
 
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => DetailsScreen(
-                                          recipes:  datas[index],
-                                          eventRecipeViewmodel:
-                                              EventRecipeViewmodel(), checkObj: checkObj),
-                                        ));
+                                  builder: (context) => DetailsScreen(
+                                      recipes: datas[index],
+                                      eventRecipeViewmodel:
+                                          EventRecipeViewmodel(),
+                                      checkObj: checkObj),
+                                ));
                             setState(() {});
                           },
                         );
                       })
                   : Center(child: CircularProgressIndicator());
             }));
+  }
+
+  AppBar appBar(Size size) {
+    if (recipeStatus == RecipeStatus.recipes) {
+      return AppBar(
+        automaticallyImplyLeading: false,
+        title: Text('Recipes'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                recipeStatus = RecipeStatus.search;
+                setState(() {});
+              },
+              icon: Icon(Icons.search)),
+          IconButton(
+              onPressed: () {
+                showBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return FiltersBottonSheetWidget(
+                        floatingButtonViewmodel: FloatingButtonViewmodel(),
+                      );
+                    });
+              },
+              icon: Icon(Icons.filter_list_outlined)),
+        ],
+      );
+    } else {
+      return AppBar(
+        automaticallyImplyLeading: false,
+          title: Container(
+            width: size.width,
+            color: Colors.white,
+            child: TextField(
+              decoration: InputDecoration(
+                prefixIcon: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    recipeStatus = RecipeStatus.recipes;
+                    setState(() {
+
+                    });
+                  },
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(Icons.mic_rounded),
+                  onPressed: () {},
+                ),
+                hintText: 'Search...',
+              ),
+            ),
+          ));
+    }
   }
 }

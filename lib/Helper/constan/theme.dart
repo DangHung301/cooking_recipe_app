@@ -3,11 +3,12 @@ import 'color.dart';
 
 ThemeData lightMode = ThemeData(
   backgroundColor: bgrlighMode,
-  primaryColor: bgrAppBar,
+  primaryColor: bgrlighMode,
   canvasColor: bgrlighMode,
   appBarTheme: AppBarTheme(
-    backgroundColor: bgrFoatingButton,
-    brightness: Brightness.light,
+    iconTheme: IconThemeData(color: bgrlighMode),
+    textTheme: TextTheme(headline6: TextStyle(color: bgrlighMode, fontSize: 22, fontWeight: FontWeight.w600)),
+    backgroundColor: bgrAppBar,
   ),
 );
 
@@ -26,6 +27,5 @@ ThemeData darkMode = ThemeData(
     canvasColor: bgrDarkMode,
     appBarTheme: AppBarTheme(
         backgroundColor: bgrDarkMode,
-        brightness: Brightness.dark
     )
 );
