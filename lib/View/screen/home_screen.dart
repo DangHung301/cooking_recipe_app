@@ -30,7 +30,7 @@ class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
     return Scaffold(
       body: _widgetOption.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: bgrFoatingButton,
+          selectedItemColor: bgrAppBar,
           items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.menu_book_outlined), label: "Recipes"),
@@ -40,21 +40,6 @@ class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
           ],
           currentIndex: _selectedIndex,
           onTap: _onItemTapped),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // showModalBottomSheet(context: context, builder: (BuildContext context){
-          //   return MealTypeWidget();
-          // });
-          EventRecipeViewmodel eventRecipeViewmodel = EventRecipeViewmodel();
-
-          eventRecipeViewmodel.deleteAll();
-          setState(() {
-
-          });
-        },
-        child: Icon(Icons.restaurant),
-        backgroundColor: bgrFoatingButton,
-      ),
     );
   }
 }
