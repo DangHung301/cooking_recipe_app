@@ -13,7 +13,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class DetailsScreen extends StatefulWidget {
   final Recipes recipes;
   final EventRecipeViewmodel eventRecipeViewmodel;
-  late final bool checkObj;
+  bool checkObj;
   DetailsScreen({required this.recipes, required this.eventRecipeViewmodel, required this.checkObj});
 
   @override
