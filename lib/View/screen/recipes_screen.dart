@@ -1,4 +1,5 @@
-import 'package:cooking_recipe_app/Helper/config/remove_text_html.dart';
+import 'package:cooking_recipe_app/Helper/extension.dart';
+import 'package:cooking_recipe_app/Helper/constan/assets.dart';
 import 'package:cooking_recipe_app/Helper/constan/color.dart';
 import 'package:cooking_recipe_app/Model/recipes.dart';
 import 'package:cooking_recipe_app/View/screen/details_screen.dart';
@@ -78,7 +79,7 @@ class _RecipesItemState extends State<RecipesScreen> {
                               readyInMinutes: datas[index].readyInMinutes,
                               image: '${datas[index].image}',
                               summary:
-                                  removeAllHtmlTags('${datas[index].summary}')),
+                                  '${datas[index].summary}'.removeTextHtml()),
                           onTap: () async {
                             bool checkObj = await _eventRecipeViewmodel
                                 .isFavorite(datas[index].id);
@@ -99,7 +100,7 @@ class _RecipesItemState extends State<RecipesScreen> {
 
                 case ConnectionState.waiting:
                   return Center(
-                    child: Text('Empty'),
+                    child: Image.asset('$images/no_data_recipes.png'),
                   );
 
                 case ConnectionState.none:

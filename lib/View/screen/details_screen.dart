@@ -46,6 +46,7 @@ class _DetailsScreenState extends State<DetailsScreen>
         ),
         actions: [
           IconButton(
+
             onPressed: () {
               var fToast = FToast();
               fToast.init(context);
@@ -68,6 +69,8 @@ class _DetailsScreenState extends State<DetailsScreen>
         ],
         bottom: TabBar(
           controller: _tabController,
+          labelColor: Colors.white,
+          indicatorColor: Colors.white,
           tabs: [
             Tab(
               child: Text('Overview'),

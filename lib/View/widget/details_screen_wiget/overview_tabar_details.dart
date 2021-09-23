@@ -1,10 +1,10 @@
-import 'package:cooking_recipe_app/Helper/config/remove_text_html.dart';
 import 'package:cooking_recipe_app/Helper/constan/assets.dart';
 import 'package:cooking_recipe_app/Model/overview_recipe.dart';
 import 'package:cooking_recipe_app/View/widget/details_screen_wiget/appraisal_food.dart';
 import 'package:cooking_recipe_app/ViewModel/overview_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cooking_recipe_app/Helper/extension.dart';
 
 class OverviewTabarDetails extends StatefulWidget {
   final int recipesId;
@@ -126,7 +126,7 @@ class _OverviewTabarDetailsState extends State<OverviewTabarDetails> {
                               height: 15,
                             ),
                             Text(
-                              removeAllHtmlTags('${snapshot.data?.summary}'),
+                              '${snapshot.data?.summary}'.toString().removeTextHtml(),
                               style: TextStyle(fontSize: 15),
                             )
                           ],

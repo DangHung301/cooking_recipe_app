@@ -1,3 +1,5 @@
+import 'package:cooking_recipe_app/Helper/extension.dart';
+
 class OverviewRecipes {
   bool vegetarian;
   bool vegan;
@@ -28,17 +30,17 @@ class OverviewRecipes {
 
   factory OverviewRecipes.fromJson(Map<String, dynamic> json) {
     return OverviewRecipes(
-        vegetarian: json['vegetarian'],
-        vegan: json['vegan'],
-        glutenFree: json['glutenFree'],
-        dairyFree: json['dairyFree'],
-        veryHealthy: json['veryHealthy'],
-        cheap: json['cheap'],
-        aggregateLikes: json['aggregateLikes'],
-        readyInMinutes: json['readyInMinutes'],
-        id: json['id'],
-        image: json['image'],
-        title: json['title'],
-        summary: json['summary']);
+        vegetarian: json.boolValue('vegetarian'),
+        vegan: json.boolValue('vegan'),
+        glutenFree: json.boolValue('glutenFree'),
+        dairyFree: json.boolValue('dairyFree'),
+        veryHealthy: json.boolValue('veryHealthy'),
+        cheap: json.boolValue('vegetarian'),
+        aggregateLikes: json.intValue('aggregateLikes'),
+        readyInMinutes: json.intValue('readyInMinutes'),
+        id: json.intValue('id'),
+        image: json.stringValue('image'),
+        title: json.stringValue('title'),
+        summary: json.stringValue('sumary'));
   }
 }

@@ -25,6 +25,8 @@ class _DietTypeWidgetState extends State<DietTypeWidget> {
            'Diet type',
            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
          ),
+         SizedBox(height: 10,),
+
          Wrap(
            spacing: 5,
            direction: Axis.horizontal,

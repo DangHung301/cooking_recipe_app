@@ -88,7 +88,7 @@ Widget _itemStep(
                   Text(
                     'Step $step:',
                     style: TextStyle(
-                        color: Colors.grey.withOpacity(0.7), fontSize: 10),
+                        fontSize: 14),
                   ),
                   Text(
                     '$title',
@@ -104,9 +104,9 @@ Widget _itemStep(
               scrollDirection: Axis.vertical,
               child: Text(
                 '$content',
-                style: TextStyle(color: Colors.grey),
+                ),
               ),
-            )),
+            ),
       ],
     ),
   );

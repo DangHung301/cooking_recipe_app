@@ -59,60 +59,56 @@ Widget _itemIngredients(
     required String name,
     required String original,
     required Size size}) {
-  return Card(
-    elevation: 5,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Container(
-      width: size.width,
-      height: size.height * 0.1,
-      // margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      decoration: BoxDecoration(
-          border: Border.all(width: 1, color: Colors.grey.withOpacity(0.3)),
-          borderRadius: BorderRadius.circular(10)),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Container(
-              width: size.width * 0.3,
-              height: size.height * 0.1,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage("https://spoonacular.com/cdn/ingredients_100x100/"+"$image"), fit: BoxFit.cover),
-                border: Border.all(width: 1, color: Colors.grey.withOpacity(0.3)),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    topLeft: Radius.circular(10)),
-              ),
+  return Container(
+    width: size.width,
+    height: size.height * 0.15,
+    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+
+    decoration: BoxDecoration(
+        border: Border.all(width: 1, color: Colors.grey.withOpacity(0.3)),
+        borderRadius: BorderRadius.circular(10)),
+    child: Row(
+      children: [
+        Expanded(
+          flex: 4,
+          child: Container(
+            width: size.width * 0.4,
+            height: size.height * 0.15,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage("https://spoonacular.com/cdn/ingredients_100x100/"+"$image"), fit: BoxFit.cover),
+              border: Border.all(width: 1, color: Colors.grey.withOpacity(0.3)),
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  topLeft: Radius.circular(10)),
             ),
           ),
-          Expanded(
-              flex: 7,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 6,
+        ),
+        Expanded(child: SizedBox(width: 10,)),
+        Expanded(
+            flex: 7,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  '$name',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                SingleChildScrollView(
+                  child: Text(
+                    '$original',
+                    style: TextStyle(fontSize: 13),
                   ),
-                  Text(
-                    '$name',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  SingleChildScrollView(
-                    child: Text(
-                      '$original',
-                      style: TextStyle(fontSize: 10, color: Colors.grey),
-                    ),
-                  )
-                ],
-              ))
-        ],
-      ),
+                )
+              ],
+            ))
+      ],
     ),
   );
 }

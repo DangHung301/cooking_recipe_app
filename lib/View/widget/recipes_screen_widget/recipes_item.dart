@@ -18,6 +18,7 @@ class RecipesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Card(
+      margin: EdgeInsets.symmetric(horizontal: 13, vertical: 10),
       elevation: 5,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -28,7 +29,7 @@ class RecipesItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
 
         ),
-        height: size.height * 0.2,
+        height: size.height * 0.25,
         // padding: EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +37,7 @@ class RecipesItem extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                height: size.height * 0.2,
+                height: size.height * 0.25,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(10),
@@ -58,11 +59,11 @@ class RecipesItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
-                        flex: 2,
+                        flex: 3,
                         child: Text(
                           '$title',
                           style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 13),
+                              fontWeight: FontWeight.w600, fontSize: 15),
                         ),
                       ),
                       Expanded(
@@ -70,7 +71,7 @@ class RecipesItem extends StatelessWidget {
                         child: Text(
                           '$summary',
                           maxLines: 3,
-                          style: TextStyle(fontSize: 10, color: Colors.grey),
+                          style: TextStyle(fontSize: 12),
                         ),
                       ),
                       Expanded(

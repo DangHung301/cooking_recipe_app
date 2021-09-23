@@ -20,7 +20,7 @@ class ReactionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+    return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
       subReaction(
           icon: '$icons/favorite.svg',
           number: aggregateLikes,

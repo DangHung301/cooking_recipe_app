@@ -13,7 +13,7 @@ class ButtonSheetWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
                 flex: 3,

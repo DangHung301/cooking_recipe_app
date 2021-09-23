@@ -1,3 +1,5 @@
+import 'package:cooking_recipe_app/Helper/extension.dart';
+
 class Ingredient {
   int id;
   String? image;
@@ -12,9 +14,9 @@ class Ingredient {
 
   factory Ingredient.fromJson(Map<String, dynamic> json) {
     return Ingredient(
-        id: json['id'],
-        image: json['image'],
-        name: json['name'],
-        original: json['original']);
+        id: json.intValue('id'),
+        image: json.stringValue('image'),
+        name: json.stringValue('name'),
+        original: json.stringValue('original'));
   }
 }
