@@ -1,6 +1,6 @@
 class Recipes {
   bool vegan;
-  int? aggregateLikes;
+  int aggregateLikes;
   int id;
   String title;
   int readyInMinutes;

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AppraisalFood extends StatelessWidget {
-  int aggregateLikes;
-  int readyInMinutes;
-  String title;
-  bool vegetarian;
-  bool vegan;
-  bool glutenFree;
-  bool dairyFree;
-  bool veryHealthy;
-  bool cheap;
+  final int aggregateLikes;
+  final int readyInMinutes;
+  final String title;
+  final bool vegetarian;
+  final bool vegan;
+  final bool glutenFree;
+  final bool dairyFree;
+  final bool veryHealthy;
+  final bool cheap;
 
   AppraisalFood({
     required this.aggregateLikes,

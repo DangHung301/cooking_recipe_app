@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ReactionItem extends StatelessWidget {
-  int? aggregateLikes = 0;
-  int? readyInMinutes = 0;
-  bool vegan = false;
+  final int aggregateLikes;
+  final int readyInMinutes;
+  final bool vegan;
 
   ReactionItem(
       {required this.aggregateLikes,

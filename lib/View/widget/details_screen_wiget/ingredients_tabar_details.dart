@@ -1,11 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cooking_recipe_app/Model/ingredient.dart';
 import 'package:cooking_recipe_app/ViewModel/ingredient_viewmodel.dart';
 import 'package:flutter/material.dart';
 
 class IngredientsTabarDetails extends StatefulWidget {
-  int id;
-  IngredientViewModel ingredientViewModel;
+  final int id;
+  final IngredientViewModel ingredientViewModel;
 
   IngredientsTabarDetails(
       {required this.id, required this.ingredientViewModel});

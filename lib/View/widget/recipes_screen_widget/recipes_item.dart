@@ -2,13 +2,13 @@ import 'package:cooking_recipe_app/View/widget/recipes_screen_widget/reaction_it
 import 'package:flutter/material.dart';
 
 class RecipesItem extends StatelessWidget {
-  bool vegan;
-  int? aggregateLikes;
-  int? id;
-  String? title;
-  int? readyInMinutes;
-  String? image;
-  String? summary;
+  final bool vegan;
+  final int aggregateLikes;
+  final int id;
+  final String? title;
+  final int readyInMinutes;
+  final String? image;
+  final String? summary;
 
   RecipesItem({required this.vegan, required this.aggregateLikes, required this.id, required this.title,
       required this.readyInMinutes, required this.image, required this.summary});

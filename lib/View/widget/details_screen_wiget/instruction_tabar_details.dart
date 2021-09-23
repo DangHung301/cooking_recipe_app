@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InstructionTabarDetails extends StatefulWidget {
-  int id;
-  InstructionViewmodel instructionViewmodel;
+  final int id;
+  final InstructionViewmodel instructionViewmodel;
 
   InstructionTabarDetails(
       {required this.id, required this.instructionViewmodel});

@@ -13,7 +13,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class DetailsScreen extends StatefulWidget {
   final Recipes recipes;
   final EventRecipeViewmodel eventRecipeViewmodel;
-  bool checkObj;
+  late final bool checkObj;
   DetailsScreen({required this.recipes, required this.eventRecipeViewmodel, required this.checkObj});
 
   @override
@@ -56,11 +56,11 @@ class _DetailsScreenState extends State<DetailsScreen>
               if(widget.checkObj){
                 widget.eventRecipeViewmodel.addRecipe(widget.recipes);
                 widget.eventRecipeViewmodel.init();
-                fToast.showToast(child: ToastDialog(size, 'Recipe ADD', 'OKEY', fToast));
+                fToast.showToast(child: toastDialog(size, 'Recipe ADD', 'OKEY', fToast));
               }else{
                 widget.eventRecipeViewmodel.deleteRecipe(widget.recipes);
                 widget.eventRecipeViewmodel.init();
-                fToast.showToast(child: ToastDialog(size, 'Recipe REMOVE', 'OKE', fToast));
+                fToast.showToast(child: toastDialog(size, 'Recipe REMOVE', 'OKE', fToast));
               }
 
             },

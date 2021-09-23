@@ -7,8 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OverviewTabarDetails extends StatefulWidget {
-  int recipesId;
-  OverviewViewModel overviewViewModel;
+  final int recipesId;
+  final OverviewViewModel overviewViewModel;
 
   OverviewTabarDetails(
       {required this.recipesId, required this.overviewViewModel});

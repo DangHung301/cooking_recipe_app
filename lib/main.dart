@@ -10,7 +10,7 @@ void main() async{
 }
 
 class MyApp extends StatelessWidget {
-  bool isTheme = false;
+  final bool isTheme = false;
 
   @override
   Widget build(BuildContext context) {

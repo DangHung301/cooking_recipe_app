@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-Widget ToastDialog(Size size, String content, String textButtom, FToast fToast) {
+Widget toastDialog(Size size, String content, String textButtom, FToast fToast) {
   return Container(
     width: size.width,
     height: size.width * 0.13,
