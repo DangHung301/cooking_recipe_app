@@ -1,10 +1,11 @@
 import 'dart:convert';
+import 'package:cooking_recipe_app/Helper/constan/url.dart';
 import 'package:cooking_recipe_app/Model/instruction.dart';
 import 'package:http/http.dart' as http;
 
 class FetchDataInstruction{
  static Future<List<Instructions>> fetchDataInstruction(int id) async{
-   String url = 'https://api.spoonacular.com/recipes/$id/analyzedInstructions?apiKey=9109f71b5da743febc8ae7c876ec5c1f';
+   String url = 'https://api.spoonacular.com/recipes/$id/analyzedInstructions?$apiKey';
     List<Instructions> listInstruction = [];
    final response = await http.get(Uri.parse(url));
 

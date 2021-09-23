@@ -37,9 +37,9 @@ class _FiltersBottonSheetWidgetState extends State<FiltersBottonSheetWidget> {
               )
             ],
           ),
-
-          SizedBox(height: 15,),
-
+          SizedBox(
+            height: 15,
+          ),
           Wrap(
               crossAxisAlignment: WrapCrossAlignment.start,
               direction: Axis.horizontal,
@@ -47,32 +47,38 @@ class _FiltersBottonSheetWidgetState extends State<FiltersBottonSheetWidget> {
               children: List.generate(
                   _lable.length,
                   (index) => ChoiceChip(
-                        label: Text('${_lable[index]}'),
+                        label: Text(
+                          '${_lable[index]}',
+                          style: TextStyle(
+                              color: _boolList[index] ? bgrAppBar : Colors.grey,
+                              fontSize: 12),
+                        ),
                         selected: _boolList[index],
+                        selectedColor: Color(0xFFE8DDFF),
                         onSelected: (select) {
                           _boolList[index] = select;
                           setState(() {});
                         },
                       ))),
-
-          SizedBox(height: 20,),
-
+          SizedBox(
+            height: 20,
+          ),
           InkWell(
               child: Container(
-                alignment: Alignment.center,
-                width: size.width * 0.88,
-                height: 50,
-                decoration: BoxDecoration(
-                    color: bgrAppBar, borderRadius: BorderRadius.circular(5)),
-                child: Text(
-                  'APPLY',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15),
-                  textAlign: TextAlign.center,
-                ),
-              )),
+            alignment: Alignment.center,
+            width: size.width * 0.88,
+            height: 50,
+            decoration: BoxDecoration(
+                color: bgrAppBar, borderRadius: BorderRadius.circular(5)),
+            child: Text(
+              'APPLY',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15),
+              textAlign: TextAlign.center,
+            ),
+          )),
         ],
       ),
     );

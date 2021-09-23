@@ -23,6 +23,7 @@ class RecipesScreen extends StatefulWidget {
 
 class _RecipesItemState extends State<RecipesScreen> {
   RecipeStatus recipeStatus = RecipeStatus.recipes;
+  TextEditingController _textEditingController = TextEditingController();
 
   @override
   void initState() {
@@ -51,7 +52,9 @@ class _RecipesItemState extends State<RecipesScreen> {
           backgroundColor: bgrFoatingButton,
         ),
         body: StreamBuilder(
-            stream: widget.recipesViewModel.subject.stream,
+            stream: recipeStatus == RecipeStatus.recipes
+                ? widget.recipesViewModel.subjectlistDefaut.stream
+                : widget.recipesViewModel.subjectListSearch.stream,
             builder:
                 (BuildContext context, AsyncSnapshot<List<Recipes>> snapshot) {
               if (snapshot.hasError) {
@@ -61,8 +64,9 @@ class _RecipesItemState extends State<RecipesScreen> {
               final datas = snapshot.data ?? [];
 
               print(snapshot.hasData);
-              return datas.isNotEmpty
-                  ? ListView.builder(
+              switch (snapshot.connectionState) {
+                case ConnectionState.active:
+                  return ListView.builder(
                       itemCount: datas.length,
                       itemBuilder: (context, index) {
                         return InkWell(
@@ -91,8 +95,19 @@ class _RecipesItemState extends State<RecipesScreen> {
                             setState(() {});
                           },
                         );
-                      })
-                  : Center(child: CircularProgressIndicator());
+                      });
+
+                case ConnectionState.waiting:
+                  return Center(
+                    child: Text('Empty'),
+                  );
+
+                case ConnectionState.none:
+                default:
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+              }
             }));
   }
 
@@ -123,19 +138,22 @@ class _RecipesItemState extends State<RecipesScreen> {
       );
     } else {
       return AppBar(
-        automaticallyImplyLeading: false,
+          automaticallyImplyLeading: false,
           title: Container(
             width: size.width,
             color: Colors.white,
             child: TextField(
+              controller: _textEditingController,
+              onChanged: (query) {
+                widget.recipesViewModel.delaySearch(query.trim());
+              },
               decoration: InputDecoration(
                 prefixIcon: IconButton(
                   icon: Icon(Icons.arrow_back),
                   onPressed: () {
                     recipeStatus = RecipeStatus.recipes;
-                    setState(() {
-
-                    });
+                    widget.recipesViewModel.fetchRecipes();
+                    setState(() {});
                   },
                 ),
                 suffixIcon: IconButton(

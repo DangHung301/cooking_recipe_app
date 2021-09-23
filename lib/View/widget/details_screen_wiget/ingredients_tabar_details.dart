@@ -23,12 +23,6 @@ class _IngredientsTabarDetailsState extends State<IngredientsTabarDetails> {
   }
 
   @override
-  void dispose() {
-    super.initState();
-    widget.ingredientViewModel.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return StreamBuilder(

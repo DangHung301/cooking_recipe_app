@@ -1,5 +1,3 @@
-import 'package:cooking_recipe_app/Helper/constan/assets.dart';
-
 class Recipes {
   bool vegan;
   int? aggregateLikes;
@@ -21,14 +19,14 @@ class Recipes {
       id: json['id'],
       title: json['title'],
       readyInMinutes: json['readyInMinutes'],
-      image: json['image'] ?? '$images/background.png',
+      image: json['image'],
       summary: json['summary'],
     );
   }
 
   factory Recipes.fromData(Map<String, dynamic> json){
     return Recipes(
-      vegan: json['vegan'] == 1 ? true : false ,
+      vegan: json['vegan'] == 1 ? true : false,
       aggregateLikes: json['aggregateLikes'],
       id: json['id'],
       title: json['title'],

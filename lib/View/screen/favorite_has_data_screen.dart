@@ -94,7 +94,7 @@ class _FavoriteHasDataScreenState extends State<FavoriteHasDataScreen> {
                           builder: (context) =>
                               DetailsScreen(recipes: datas[index],
                                   eventRecipeViewmodel: EventRecipeViewmodel(),
-                                  checkObj: checkObj)));
+                                  checkObj: checkObj))).then((value) => widget.eventRecipeViewmodel.init());
                     },
                     child: RecipesItem(
                         vegan: datas[index].vegan,

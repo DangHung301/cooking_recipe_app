@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class DetailsScreen extends StatefulWidget {
-  Recipes recipes;
-  EventRecipeViewmodel eventRecipeViewmodel;
+  final Recipes recipes;
+  final EventRecipeViewmodel eventRecipeViewmodel;
   bool checkObj;
   DetailsScreen({required this.recipes, required this.eventRecipeViewmodel, required this.checkObj});
 
@@ -37,11 +37,14 @@ class _DetailsScreenState extends State<DetailsScreen>
     print(widget.recipes.id);
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: (){
+          Navigator.pop(context);
+        },),
         title: Text(
           'Details',
         ),
         actions: [
-
           IconButton(
             onPressed: () {
               var fToast = FToast();
