@@ -34,7 +34,7 @@ class AppraisalFood extends StatelessWidget {
         children: [
           Text(
             '$title',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 19, fontWeight: FontWeight.w600),
             textAlign: TextAlign.left,
           ),
 
@@ -46,9 +46,9 @@ class AppraisalFood extends StatelessWidget {
                width: size.width * 0.3,
                child: Column(
                  children: [
-                   _subAppraisal(title: 'vegan', status: vegan),
+                   _subAppraisal(title: 'vegan', status: vegan, context: context),
                    SizedBox(height: 10,),
-                   _subAppraisal(title: 'Vegetarian', status: vegetarian),
+                   _subAppraisal(title: 'Vegetarian', status: vegetarian, context: context),
                  ],
                ),
              ),
@@ -57,9 +57,9 @@ class AppraisalFood extends StatelessWidget {
                width: size.width * 0.3,
                child: Column(
                  children: [
-                   _subAppraisal(title: 'Dairy Free', status: dairyFree),
+                   _subAppraisal(title: 'Dairy Free', status: dairyFree, context: context),
                    SizedBox(height: 10,),
-                   _subAppraisal(title: 'Gluten Free', status: glutenFree),
+                   _subAppraisal(title: 'Gluten Free', status: glutenFree, context: context),
                  ],
                ),
              ),
@@ -68,9 +68,9 @@ class AppraisalFood extends StatelessWidget {
                width: size.width * 0.3,
                child: Column(
                  children: [
-                   _subAppraisal(title: 'Healthy', status: veryHealthy),
+                   _subAppraisal(title: 'Healthy', status: veryHealthy, context: context),
                    SizedBox(height: 10,),
-                   _subAppraisal(title: 'Cheap', status: cheap),
+                   _subAppraisal(title: 'Cheap', status: cheap, context: context),
                  ],
                ),
              ),
@@ -83,7 +83,7 @@ class AppraisalFood extends StatelessWidget {
   }
 }
 
-Widget _subAppraisal({required String title, required bool status}) {
+Widget _subAppraisal({required String title, required bool status,required BuildContext context}) {
   return Row(
     children: [
       status
@@ -98,11 +98,11 @@ Widget _subAppraisal({required String title, required bool status}) {
       status
           ? Text(
               '$title',
-              style: TextStyle(color: Colors.green),
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.green),
             )
           : Text(
               '$title',
-              style: TextStyle(color: Colors.grey),
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.grey),
             )
     ],
   );

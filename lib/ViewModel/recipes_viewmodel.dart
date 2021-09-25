@@ -1,10 +1,9 @@
-import 'dart:developer';
 
-import 'package:cooking_recipe_app/Helper/database/recipe_table.dart';
+import 'dart:math';
+
 import 'package:cooking_recipe_app/Model/recipes.dart';
 import 'package:cooking_recipe_app/Service/fetch_data_meal_diet.dart';
 import 'package:cooking_recipe_app/Service/fetch_data_recipes.dart';
-import 'package:cooking_recipe_app/ViewModel/favorite_viewmodel.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RecipesViewModel {
@@ -16,7 +15,6 @@ class RecipesViewModel {
       BehaviorSubject<List<Recipes>>();
 
   BehaviorSubject<String> subjectSearch = BehaviorSubject<String>();
-  RecipeTable _recipeTable = RecipeTable();
 
   List<Recipes> listRecipes = <Recipes>[];
   List<Recipes> listSearch = <Recipes>[];
@@ -60,28 +58,22 @@ class RecipesViewModel {
   void fetchRecipes() async {
     this.listRecipes = await FetchDataRecipes.fetchRecipes();
     _subjectlistDefaut.sink.add(this.listRecipes);
-    this.listSearch = await FetchDataRecipes.fetchRecipes();
-    _subjectListSearch.add(this.listSearch);
+    _subjectListSearch.sink.add(this.listRecipes);
   }
 
-  Future<List<Recipes>> sortList() async{
-    List<Recipes> listSort;
-    listSort = await _recipeTable.selectAll();
-
-    listSort.sort((a, b) => a.aggregateLikes.compareTo(b.aggregateLikes));
-    listSort.reversed;
-
-    return listSort;
+  void backHome() async{
+    this.listRecipes = await _subjectlistDefaut.value;
+    _subjectlistDefaut.sink.add(this.listRecipes);
   }
 
   void fetchDataFilter() async {
-    switch ('Trendy') {
+    String select = listFilter.last;
+    listFilter.clear();
+    switch (select) {
       case 'All':
         {
-          print('1');
           this.listRecipes = await FetchDataRecipes.fetchRecipes();
           _subjectlistDefaut.sink.add(this.listRecipes);
-          log('1');
         }
         break;
       case 'Newest':
@@ -90,11 +82,9 @@ class RecipesViewModel {
       case 'Trendy':
       case 'Most Liked':
         {
-          listRecipes.clear();
-          this.listRecipes = await sortList();
-          for(var i in listRecipes){
-            print(i.aggregateLikes);
-          }
+          this.listRecipes = _subjectlistDefaut.value;
+          this.listRecipes.sort((a, b) => a.aggregateLikes.compareTo(b.aggregateLikes));
+          this.listRecipes.reversed;
           _subjectlistDefaut.sink.add(this.listRecipes);
         }
         break;
@@ -110,10 +100,4 @@ class RecipesViewModel {
     _subjectlistDefaut.close();
     subjectSearch.close();
   }
-
-  // String addSelected(String lable) {
-  //   listFilter.clear();
-  //   listFilter.add(lable);
-  //   return listFilter[0];
-  // }
 }

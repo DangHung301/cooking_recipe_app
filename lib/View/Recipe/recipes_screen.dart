@@ -61,7 +61,6 @@ class _RecipesItemState extends State<RecipesScreen> {
               }
 
               final datas = snapshot.data ?? [];
-
               print(snapshot.hasData);
               switch (snapshot.connectionState) {
                 case ConnectionState.active:
@@ -129,7 +128,7 @@ class _RecipesItemState extends State<RecipesScreen> {
                     context: context,
                     builder: (BuildContext context) {
                       return FiltersBottonSheetWidget(
-                        recipesViewModel: RecipesViewModel(),
+                        recipesViewModel: widget.recipesViewModel,
                       );
                     });
               },
@@ -152,7 +151,7 @@ class _RecipesItemState extends State<RecipesScreen> {
                   icon: Icon(Icons.arrow_back),
                   onPressed: () {
                     recipeStatus = RecipeStatus.recipes;
-                    widget.recipesViewModel.fetchRecipes();
+                    widget.recipesViewModel.backHome();
                     setState(() {});
                   },
                 ),

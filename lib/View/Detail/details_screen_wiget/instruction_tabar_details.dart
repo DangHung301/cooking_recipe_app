@@ -49,7 +49,7 @@ class _InstructionTabarDetailsState extends State<InstructionTabarDetails> {
                         step: snapshot.data?[index].number,
                         title: '',
                         content: snapshot.data?[index].step,
-                        size: size);
+                        size: size, context: context);
                   })
               : Center(
                   child: Text(AppLocalizations.of(context)?.empty ?? ''
@@ -63,7 +63,7 @@ Widget _itemStep(
     {required int? step,
     required String title,
     required String? content,
-    required Size size}) {
+    required Size size, required BuildContext context}) {
   return Container(
     padding: EdgeInsets.symmetric(vertical: 10),
     width: size.width,
@@ -87,12 +87,11 @@ Widget _itemStep(
                 children: [
                   Text(
                     'Step $step:',
-                    style: TextStyle(
-                        fontSize: 14),
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 15),
                   ),
                   Text(
                     '$title',
-                    style: TextStyle(color: Colors.green, fontSize: 25),
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 25),
                   )
                 ],
               )

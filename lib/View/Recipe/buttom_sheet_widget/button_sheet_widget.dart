@@ -46,10 +46,7 @@ class _ButtonSheetWidgetState extends State<ButtonSheetWidget> {
                     color: bgrAppBar, borderRadius: BorderRadius.circular(5)),
                 child: Text(
                   AppLocalizations.of(context)?.apply ?? '',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15),
+                  style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w500),
                   textAlign: TextAlign.center,
                 ),
               ),

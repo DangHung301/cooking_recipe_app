@@ -37,7 +37,7 @@ class _FiltersBottonSheetWidgetState extends State<FiltersBottonSheetWidget> {
                 ),
                 Text(
                   AppLocalizations.of(context)?.filter ?? '',
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 19),
+                  style:Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 19, fontWeight: FontWeight.w500),
                 )
               ],
             ),
@@ -54,15 +54,18 @@ class _FiltersBottonSheetWidgetState extends State<FiltersBottonSheetWidget> {
                     (index) => ChoiceChip(
                           label: Text(
                             '${_lable[index]}',
-                            style: TextStyle(
-                                color: widget.recipesViewModel.isFilter==index ? bgrAppBar : Colors.grey,
+                            style:Theme.of(context).textTheme.bodyText1?.copyWith( color: widget.recipesViewModel.isFilter==index ? bgrAppBar : Colors.grey,
                                 fontSize: 12),
                           ),
                           selected: widget.recipesViewModel.isFilter==index,
                           selectedColor: Color(0xFFE8DDFF),
                           onSelected: ( select) {
                             widget.recipesViewModel.isFilter = select ? index : null;
-                            // widget.recipesViewModel.addSelected(_lable[index]);
+                            widget.recipesViewModel.listFilter.add(_lable[index]);
+                            print(_lable[index]);
+                            setState(() {
+
+                            });
                           },
                         ))),
           ),
@@ -78,16 +81,16 @@ class _FiltersBottonSheetWidgetState extends State<FiltersBottonSheetWidget> {
                   color: bgrAppBar, borderRadius: BorderRadius.circular(5)),
               child: Text(
                 AppLocalizations.of(context)?.apply ?? '',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 15),
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w500),
                 textAlign: TextAlign.center,
               ),
             ),
             onTap: () {
                    widget.recipesViewModel.fetchDataFilter();
                   Navigator.pop(context);
+                  setState(() {
+
+                  });
             },),
           ),
         ],

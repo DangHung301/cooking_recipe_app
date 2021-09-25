@@ -117,17 +117,14 @@ class _OverviewTabarDetailsState extends State<OverviewTabarDetails> {
                           children: [
                             Text(
                               'Description',
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  fontStyle: FontStyle.italic,
-                                  color: Colors.grey.withOpacity(0.9)),
+                              style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 13, fontStyle: FontStyle.italic),
                             ),
                             SizedBox(
                               height: 15,
                             ),
                             Text(
                               '${snapshot.data?.summary}',
-                              style: TextStyle(fontSize: 15),
+                              style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 16),
                             )
                           ],
                         ),
@@ -156,7 +153,7 @@ class _OverviewTabarDetailsState extends State<OverviewTabarDetails> {
         ),
         Text(
           '$content',
-          style: TextStyle(color: colorIcon, fontWeight: FontWeight.w400),
+          style: Theme.of(context).textTheme.bodyText1?.copyWith(color: colorIcon, fontWeight: FontWeight.w400),
         ),
       ],
     );

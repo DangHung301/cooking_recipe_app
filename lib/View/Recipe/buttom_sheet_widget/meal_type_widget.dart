@@ -8,7 +8,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class MealTypeWidget extends StatefulWidget {
   final RecipesViewModel recipesViewModel;
 
-
   MealTypeWidget({required this.recipesViewModel});
 
   @override
@@ -27,7 +26,10 @@ class _MealTypeWidgetState extends State<MealTypeWidget> {
         children: [
           Text(
             AppLocalizations.of(context)?.meal ?? '',
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+            style: Theme.of(context)
+                .textTheme
+                .bodyText1
+                ?.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
           ),
           Wrap(
             spacing: 5,
@@ -37,7 +39,7 @@ class _MealTypeWidgetState extends State<MealTypeWidget> {
                 (index) => FilterChip(
                     label: Text(
                       '${_lable[index]}',
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
                           color: _selectMeal[index] ? bgrAppBar : Colors.grey,
                           fontSize: 12),
                     ),
@@ -47,11 +49,10 @@ class _MealTypeWidgetState extends State<MealTypeWidget> {
                     selected: _selectMeal[index],
                     onSelected: (select) {
                       _selectMeal[index] = select;
-                      if(_selectMeal[index]){
+                      if (_selectMeal[index]) {
                         widget.recipesViewModel.dietList.add(_lable[index]);
-                      }else {
-                        widget.recipesViewModel.dietList.remove(
-                            _lable[index]);
+                      } else {
+                        widget.recipesViewModel.dietList.remove(_lable[index]);
                       }
                       setState(() {});
                     })),

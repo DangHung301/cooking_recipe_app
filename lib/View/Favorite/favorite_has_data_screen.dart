@@ -44,13 +44,11 @@ class _FavoriteHasDataScreenState extends State<FavoriteHasDataScreen> {
                                         AppLocalizations.of(context)
                                                 ?.deleteAll ??
                                             '',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700),
+                                        style: Theme.of(context).textTheme.bodyText1?.copyWith(fontWeight: FontWeight.w700),
                                       ),
                                       content: Text(
                                         AppLocalizations.of(context)?.alert ?? '',
-                                        style: TextStyle(
-                                            color: Colors.grey, fontSize: 14),
+                                        style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 14, color: Colors.grey),
                                       ),
                                       actions: [
                                         TextButton(

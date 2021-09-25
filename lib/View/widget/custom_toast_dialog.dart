@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-Widget toastDialog(Size size, String content, String textButtom, FToast fToast) {
+Widget toastDialog(Size size, String content, String textButtom, FToast fToast, BuildContext context) {
   return Container(
     width: size.width,
     height: size.width * 0.13,
@@ -13,7 +13,7 @@ Widget toastDialog(Size size, String content, String textButtom, FToast fToast) 
         borderRadius: BorderRadius.circular(10), color: bgrToastDialog),
     child: Row(
       children: [
-        Expanded(flex: 7, child: Text('$content', style: TextStyle(color: Colors.white) ,)),
+        Expanded(flex: 7, child: Text('$content', style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.white))),
         Expanded(
           flex: 3,
           child: InkWell(

@@ -69,7 +69,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                         size,
                         AppLocalizations.of(context)?.recipe_add ?? '',
                         AppLocalizations.of(context)?.okey ?? '',
-                        fToast));
+                        fToast, context));
               } else {
                 widget.eventRecipeViewmodel.deleteRecipe(widget.recipes);
                 widget.eventRecipeViewmodel.init();
@@ -78,7 +78,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                         size,
                         AppLocalizations.of(context)?.recipe_remove ?? '',
                         AppLocalizations.of(context)?.okey ?? '',
-                        fToast));
+                        fToast, context));
               }
             },
             icon: Icon(Icons.star),

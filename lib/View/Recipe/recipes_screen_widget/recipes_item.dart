@@ -62,16 +62,15 @@ class RecipesItem extends StatelessWidget {
                         flex: 3,
                         child: Text(
                           '$title',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 15,),
-                        maxLines: 3,),
+                          style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 22, fontWeight: FontWeight.w600),
+                        maxLines: 2,),
                       ),
                       Expanded(
                         flex: 3,
                         child: Text(
                           '$summary',
                           maxLines: 3,
-                          style: TextStyle(fontSize: 12),
+                          style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 12),
                         ),
                       ),
                       Expanded(

@@ -43,7 +43,7 @@ class _IngredientsTabarDetailsState extends State<IngredientsTabarDetails> {
                             image: '${datas[index].image}',
                             name: '${datas[index].name}',
                             original: '${datas[index].original}',
-                            size: size);
+                            size: size, context: context);
                       })
                   : Center(
                       child: Text(AppLocalizations.of(context)?.empty ?? ''),
@@ -59,7 +59,7 @@ Widget _itemIngredients(
     {required String image,
     required String name,
     required String original,
-    required Size size}) {
+    required Size size,required  BuildContext context}) {
   return Container(
     width: size.width,
     height: size.height * 0.15,
@@ -96,7 +96,7 @@ Widget _itemIngredients(
                 ),
                 Text(
                   '$name',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  style: Theme.of(context).textTheme.bodyText1?.copyWith(fontWeight: FontWeight.w600, fontSize: 22),
                 ),
                 SizedBox(
                   height: 15,
@@ -104,7 +104,7 @@ Widget _itemIngredients(
                 SingleChildScrollView(
                   child: Text(
                     '$original',
-                    style: TextStyle(fontSize: 13),
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 12),
                   ),
                 )
               ],

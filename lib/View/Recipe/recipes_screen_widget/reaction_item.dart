@@ -24,14 +24,14 @@ class ReactionItem extends StatelessWidget {
       subReaction(
           icon: '$icons/favorite.svg',
           number: aggregateLikes,
-          textColor: textColorFavorite),
+          textColor: textColorFavorite, context: context),
       SizedBox(
         width: 10,
       ),
       subReaction(
           icon: '$icons/schedule.svg',
           number: readyInMinutes,
-          textColor: textColorSchedule),
+          textColor: textColorSchedule, context: context),
       SizedBox(
         width: 10,
       ),
@@ -49,14 +49,14 @@ class ReactionItem extends StatelessWidget {
               ),
         Text(
           'Vegan',
-          style: TextStyle(color: textColorVegan(vegan), fontSize: 10),
+          style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 10, color: textColorVegan(vegan)),
         )
       ]),
     ]);
   }
 }
 
-Widget subReaction({String? icon, int? number, Color? textColor}) {
+Widget subReaction({String? icon, int? number, Color? textColor, required BuildContext context}) {
   return Column(
     children: [
       SvgPicture.asset(
@@ -64,7 +64,7 @@ Widget subReaction({String? icon, int? number, Color? textColor}) {
       ),
       Text(
         '$number',
-        style: TextStyle(color: textColor, fontSize: 10),
+        style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 10, color: textColor),
       )
     ],
   );
