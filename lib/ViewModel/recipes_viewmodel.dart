@@ -90,18 +90,12 @@ class RecipesViewModel {
       case 'Trendy':
       case 'Most Liked':
         {
-          log('2');
           listRecipes.clear();
-
           this.listRecipes = await sortList();
-          log('3');
-
           for(var i in listRecipes){
             print(i.aggregateLikes);
           }
-
           _subjectlistDefaut.sink.add(this.listRecipes);
-          log('5');
         }
         break;
     }
