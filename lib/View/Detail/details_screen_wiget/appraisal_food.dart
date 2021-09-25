@@ -52,6 +52,7 @@ class AppraisalFood extends StatelessWidget {
                  ],
                ),
              ),
+
              Container(
                width: size.width * 0.3,
                child: Column(
@@ -62,6 +63,7 @@ class AppraisalFood extends StatelessWidget {
                  ],
                ),
              ),
+
              Container(
                width: size.width * 0.3,
                child: Column(
@@ -80,6 +82,7 @@ class AppraisalFood extends StatelessWidget {
     );
   }
 }
+
 Widget _subAppraisal({required String title, required bool status}) {
   return Row(
     children: [

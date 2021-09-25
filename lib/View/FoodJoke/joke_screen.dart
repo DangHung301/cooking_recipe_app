@@ -1,17 +1,26 @@
 import 'package:cooking_recipe_app/Helper/constan/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:share/share.dart';
 
-class JokeScreen extends StatelessWidget {
+class JokeScreen extends StatefulWidget {
+  @override
+  _JokeScreenState createState() => _JokeScreenState();
+}
+
+class _JokeScreenState extends State<JokeScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text('Food joke'),
+          title: Text(AppLocalizations.of(context)?.food_joke ?? ''),
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.share)),
+            IconButton(onPressed: () {
+              Share.share('Hello');
+            }, icon: Icon(Icons.share)),
           ],
         ),
         body: Container(

@@ -1,10 +1,11 @@
 import 'package:cooking_recipe_app/Helper/constan/color.dart';
-import 'package:cooking_recipe_app/View/screen/favorite_has_data_screen.dart';
-import 'package:cooking_recipe_app/View/screen/joke_screen.dart';
-import 'package:cooking_recipe_app/View/screen/recipes_screen.dart';
-import 'package:cooking_recipe_app/ViewModel/event_recipe_viewmodel.dart';
+import 'package:cooking_recipe_app/View/Favorite/favorite_has_data_screen.dart';
+import 'package:cooking_recipe_app/View/FoodJoke/joke_screen.dart';
+import 'package:cooking_recipe_app/View/Recipe/recipes_screen.dart';
+import 'package:cooking_recipe_app/ViewModel/favorite_viewmodel.dart';
 import 'package:cooking_recipe_app/ViewModel/recipes_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeRecipesScreen extends StatefulWidget {
   @override
@@ -14,7 +15,9 @@ class HomeRecipesScreen extends StatefulWidget {
 class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
   int _selectedIndex = 0;
   static List<Widget> _widgetOption = <Widget>[
-    RecipesScreen(recipesViewModel: RecipesViewModel(),),
+    RecipesScreen(
+      recipesViewModel: RecipesViewModel(),
+    ),
     FavoriteHasDataScreen(eventRecipeViewmodel: EventRecipeViewmodel()),
     JokeScreen()
   ];
@@ -33,10 +36,14 @@ class _HomeRecipesScreenState extends State<HomeRecipesScreen> {
           selectedItemColor: bgrAppBar,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.menu_book_outlined), label: "Recipes"),
-            BottomNavigationBarItem(icon: Icon(Icons.star), label: "Favorites"),
+                icon: Icon(Icons.menu_book_outlined),
+                label: AppLocalizations.of(context)?.recipe ?? ''),
             BottomNavigationBarItem(
-                icon: Icon(Icons.alternate_email_outlined), label: "Joke"),
+                icon: Icon(Icons.star),
+                label: AppLocalizations.of(context)?.favorite ?? ''),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.alternate_email_outlined),
+                label: AppLocalizations.of(context)?.joke ?? ''),
           ],
           currentIndex: _selectedIndex,
           onTap: _onItemTapped),

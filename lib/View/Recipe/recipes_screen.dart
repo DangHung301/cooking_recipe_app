@@ -1,16 +1,15 @@
-import 'package:cooking_recipe_app/Helper/extension.dart';
 import 'package:cooking_recipe_app/Helper/constan/assets.dart';
 import 'package:cooking_recipe_app/Helper/constan/color.dart';
 import 'package:cooking_recipe_app/Model/recipes.dart';
-import 'package:cooking_recipe_app/View/screen/details_screen.dart';
-import 'package:cooking_recipe_app/View/widget/buttom_sheet_widget/button_sheet_widget.dart';
-import 'package:cooking_recipe_app/View/widget/buttom_sheet_widget/filter_widget.dart';
-import 'package:cooking_recipe_app/View/widget/recipes_screen_widget/recipes_item.dart';
-import 'package:cooking_recipe_app/ViewModel/event_recipe_viewmodel.dart';
-import 'package:cooking_recipe_app/ViewModel/floating_buttom_viewmodel.dart';
+import 'package:cooking_recipe_app/View/Recipe/recipes_screen_widget/recipes_item.dart';
+import 'package:cooking_recipe_app/View/Detail/details_screen.dart';
+import 'package:cooking_recipe_app/ViewModel/favorite_viewmodel.dart';
 import 'package:cooking_recipe_app/ViewModel/recipes_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'buttom_sheet_widget/button_sheet_widget.dart';
+import 'buttom_sheet_widget/filter_widget.dart';
 enum RecipeStatus { search, recipes }
 
 class RecipesScreen extends StatefulWidget {
@@ -33,8 +32,6 @@ class _RecipesItemState extends State<RecipesScreen> {
   }
 
   EventRecipeViewmodel _eventRecipeViewmodel = EventRecipeViewmodel();
-  Icon customIcon = const Icon(Icons.search);
-  Widget customSearchBar = const Text('My Personal Journal');
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +42,9 @@ class _RecipesItemState extends State<RecipesScreen> {
           onPressed: () {
             showModalBottomSheet(
                 context: context,
+
                 builder: (BuildContext context) {
-                  return ButtonSheetWidget();
+                  return ButtonSheetWidget(recipesViewModel: widget.recipesViewModel);
                 });
           },
           child: Icon(Icons.restaurant),
@@ -79,7 +77,7 @@ class _RecipesItemState extends State<RecipesScreen> {
                               readyInMinutes: datas[index].readyInMinutes,
                               image: '${datas[index].image}',
                               summary:
-                                  '${datas[index].summary}'.removeTextHtml()),
+                                  '${datas[index].summary}'),
                           onTap: () async {
                             bool checkObj = await _eventRecipeViewmodel
                                 .isFavorite(datas[index].id);
@@ -116,11 +114,12 @@ class _RecipesItemState extends State<RecipesScreen> {
     if (recipeStatus == RecipeStatus.recipes) {
       return AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Recipes'),
+        title: Text(AppLocalizations.of(context)?.recipe ?? ''),
         actions: [
           IconButton(
               onPressed: () {
                 recipeStatus = RecipeStatus.search;
+                widget.recipesViewModel.fetchRecipes();
                 setState(() {});
               },
               icon: Icon(Icons.search)),
@@ -130,7 +129,7 @@ class _RecipesItemState extends State<RecipesScreen> {
                     context: context,
                     builder: (BuildContext context) {
                       return FiltersBottonSheetWidget(
-                        floatingButtonViewmodel: FloatingButtonViewmodel(),
+                        recipesViewModel: RecipesViewModel(),
                       );
                     });
               },
@@ -161,7 +160,7 @@ class _RecipesItemState extends State<RecipesScreen> {
                   icon: Icon(Icons.mic_rounded),
                   onPressed: () {},
                 ),
-                hintText: 'Search...',
+                hintText: AppLocalizations.of(context)?.search ?? '',
               ),
             ),
           ));

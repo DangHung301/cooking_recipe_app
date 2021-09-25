@@ -41,6 +41,6 @@ class OverviewRecipes {
         id: json.intValue('id'),
         image: json.stringValue('image'),
         title: json.stringValue('title'),
-        summary: json.stringValue('sumary'));
+        summary: json.stringValue('summary').removeTextHtml());
   }
 }

@@ -1,11 +1,13 @@
 import 'package:cooking_recipe_app/Helper/constan/color.dart';
-import 'package:cooking_recipe_app/ViewModel/floating_buttom_viewmodel.dart';
+import 'package:cooking_recipe_app/Helper/constan/item_buttom_sheet.dart';
+import 'package:cooking_recipe_app/ViewModel/recipes_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FiltersBottonSheetWidget extends StatefulWidget {
-  final FloatingButtonViewmodel floatingButtonViewmodel;
+  final RecipesViewModel recipesViewModel;
 
-  FiltersBottonSheetWidget({required this.floatingButtonViewmodel});
+  FiltersBottonSheetWidget({required this.recipesViewModel});
 
   @override
   _FiltersBottonSheetWidgetState createState() =>
@@ -13,11 +15,10 @@ class FiltersBottonSheetWidget extends StatefulWidget {
 }
 
 class _FiltersBottonSheetWidgetState extends State<FiltersBottonSheetWidget> {
-  int? _value = 1;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var _lable = widget.floatingButtonViewmodel.filterList;
+    var _lable = filterList;
     return Container(
       height: size.height * 0.3,
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -35,7 +36,7 @@ class _FiltersBottonSheetWidgetState extends State<FiltersBottonSheetWidget> {
                   width: 13,
                 ),
                 Text(
-                  'Filter',
+                  AppLocalizations.of(context)?.filter ?? '',
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 19),
                 )
               ],
@@ -54,14 +55,14 @@ class _FiltersBottonSheetWidgetState extends State<FiltersBottonSheetWidget> {
                           label: Text(
                             '${_lable[index]}',
                             style: TextStyle(
-                                color: _value==index ? bgrAppBar : Colors.grey,
+                                color: widget.recipesViewModel.isFilter==index ? bgrAppBar : Colors.grey,
                                 fontSize: 12),
                           ),
-                          selected: _value==index,
+                          selected: widget.recipesViewModel.isFilter==index,
                           selectedColor: Color(0xFFE8DDFF),
                           onSelected: ( select) {
-                            _value = select ? index : null;
-                            setState(() {});
+                            widget.recipesViewModel.isFilter = select ? index : null;
+                            // widget.recipesViewModel.addSelected(_lable[index]);
                           },
                         ))),
           ),
@@ -76,14 +77,18 @@ class _FiltersBottonSheetWidgetState extends State<FiltersBottonSheetWidget> {
               decoration: BoxDecoration(
                   color: bgrAppBar, borderRadius: BorderRadius.circular(5)),
               child: Text(
-                'APPLY',
+                AppLocalizations.of(context)?.apply ?? '',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                     fontSize: 15),
                 textAlign: TextAlign.center,
               ),
-            )),
+            ),
+            onTap: () {
+                   widget.recipesViewModel.fetchDataFilter();
+                  Navigator.pop(context);
+            },),
           ),
         ],
       ),

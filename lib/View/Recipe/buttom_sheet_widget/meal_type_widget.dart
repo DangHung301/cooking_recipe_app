@@ -1,12 +1,15 @@
 import 'package:cooking_recipe_app/Helper/constan/color.dart';
-import 'package:cooking_recipe_app/ViewModel/floating_buttom_viewmodel.dart';
+import 'package:cooking_recipe_app/Helper/constan/item_buttom_sheet.dart';
+import 'package:cooking_recipe_app/ViewModel/recipes_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MealTypeWidget extends StatefulWidget {
-  final FloatingButtonViewmodel floatingButtonViewmodel;
+  final RecipesViewModel recipesViewModel;
 
-  MealTypeWidget({required this.floatingButtonViewmodel});
+
+  MealTypeWidget({required this.recipesViewModel});
 
   @override
   _MealTypeWidgetState createState() => _MealTypeWidgetState();
@@ -15,15 +18,15 @@ class MealTypeWidget extends StatefulWidget {
 class _MealTypeWidgetState extends State<MealTypeWidget> {
   @override
   Widget build(BuildContext context) {
-    var _selectMeal = widget.floatingButtonViewmodel.mealBoolList;
-    var _lable = widget.floatingButtonViewmodel.mealLableList;
+    var _selectMeal = mealBoolList;
+    var _lable = mealLableList;
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Meal type',
+            AppLocalizations.of(context)?.meal ?? '',
             style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
           ),
           Wrap(
@@ -44,6 +47,12 @@ class _MealTypeWidgetState extends State<MealTypeWidget> {
                     selected: _selectMeal[index],
                     onSelected: (select) {
                       _selectMeal[index] = select;
+                      if(_selectMeal[index]){
+                        widget.recipesViewModel.dietList.add(_lable[index]);
+                      }else {
+                        widget.recipesViewModel.dietList.remove(
+                            _lable[index]);
+                      }
                       setState(() {});
                     })),
           )

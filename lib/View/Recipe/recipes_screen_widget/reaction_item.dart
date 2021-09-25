@@ -61,8 +61,6 @@ Widget subReaction({String? icon, int? number, Color? textColor}) {
     children: [
       SvgPicture.asset(
         '$icon',
-        height: 20,
-        width: 20,
       ),
       Text(
         '$number',

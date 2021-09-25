@@ -1,4 +1,4 @@
-import 'package:cooking_recipe_app/View/widget/recipes_screen_widget/reaction_item.dart';
+import 'package:cooking_recipe_app/View/Recipe/recipes_screen_widget/reaction_item.dart';
 import 'package:flutter/material.dart';
 
 class RecipesItem extends StatelessWidget {
@@ -63,8 +63,8 @@ class RecipesItem extends StatelessWidget {
                         child: Text(
                           '$title',
                           style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 15),
-                        ),
+                              fontWeight: FontWeight.w600, fontSize: 15,),
+                        maxLines: 3,),
                       ),
                       Expanded(
                         flex: 3,

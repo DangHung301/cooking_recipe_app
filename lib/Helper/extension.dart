@@ -18,7 +18,7 @@ extension intExtension on int{
 
 extension stringExtension on String{
   String removeTextHtml(){
-    return this.replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), ' ');
+    return this.replaceAll(RegExp(r'<[^>]*>|&[^;]+;', multiLine: true, caseSensitive: true), ' ');
   }
 }
 

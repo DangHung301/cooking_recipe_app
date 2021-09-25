@@ -1,11 +1,13 @@
 import 'package:cooking_recipe_app/Helper/constan/color.dart';
-import 'package:cooking_recipe_app/ViewModel/floating_buttom_viewmodel.dart';
+import 'package:cooking_recipe_app/Helper/constan/item_buttom_sheet.dart';
+import 'package:cooking_recipe_app/ViewModel/recipes_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DietTypeWidget extends StatefulWidget{
-  final FloatingButtonViewmodel floatingButtonViewmodel;
+  final RecipesViewModel recipesViewModel;
 
-  DietTypeWidget({required this.floatingButtonViewmodel});
+  DietTypeWidget({required this.recipesViewModel});
 
   @override
   _DietTypeWidgetState createState() => _DietTypeWidgetState();
@@ -14,20 +16,21 @@ class DietTypeWidget extends StatefulWidget{
 class _DietTypeWidgetState extends State<DietTypeWidget> {
   @override
   Widget build(BuildContext context) {
-    var _selectDiet = widget.floatingButtonViewmodel.dietBoolList;
-    var _labelDiet = widget.floatingButtonViewmodel.dietLableList;
+    var _selectDiet = dietBoolList;
+    var _labelDiet = dietLableList;
    return SingleChildScrollView(
      scrollDirection: Axis.vertical,
      child: Column(
        crossAxisAlignment: CrossAxisAlignment.start,
        children: [
          Text(
-           'Diet type',
+           AppLocalizations.of(context)?.diet ?? '',
            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
          ),
          SizedBox(height: 10,),
 
          Wrap(
+
            spacing: 5,
            direction: Axis.horizontal,
            children: List<Widget>.generate(
@@ -45,6 +48,12 @@ class _DietTypeWidgetState extends State<DietTypeWidget> {
                    selected: _selectDiet[index],
                    onSelected: (select) {
                      _selectDiet[index] = select;
+                     if(_selectDiet[index]){
+                        widget.recipesViewModel.dietList.add(_labelDiet[index]);
+                     }else {
+                       widget.recipesViewModel.dietList.remove(
+                           _labelDiet[index]);
+                     }
                      setState(() {});
                    })),
          )

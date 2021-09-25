@@ -1,6 +1,7 @@
 import 'package:cooking_recipe_app/Model/ingredient.dart';
 import 'package:cooking_recipe_app/ViewModel/ingredient_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IngredientsTabarDetails extends StatefulWidget {
   final int id;
@@ -45,7 +46,7 @@ class _IngredientsTabarDetailsState extends State<IngredientsTabarDetails> {
                             size: size);
                       })
                   : Center(
-                      child: Text('Empty'),
+                      child: Text(AppLocalizations.of(context)?.empty ?? ''),
                     )
               : Center(
                   child: CircularProgressIndicator(),

@@ -2,7 +2,7 @@ import 'package:cooking_recipe_app/Model/instruction.dart';
 import 'package:cooking_recipe_app/ViewModel/instructions_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class InstructionTabarDetails extends StatefulWidget {
   final int id;
   final InstructionViewmodel instructionViewmodel;
@@ -27,7 +27,6 @@ class _InstructionTabarDetailsState extends State<InstructionTabarDetails> {
   void dispose() {
     super.dispose();
     widget.instructionViewmodel.dispose();
-
   }
 
   @override
@@ -53,7 +52,8 @@ class _InstructionTabarDetailsState extends State<InstructionTabarDetails> {
                         size: size);
                   })
               : Center(
-                  child: Text('Empty'),
+                  child: Text(AppLocalizations.of(context)?.empty ?? ''
+                  ),
                 );
         });
   }
@@ -97,6 +97,7 @@ Widget _itemStep(
                 ],
               )
             ])),
+
         Expanded(
             flex: 6,
             child: SingleChildScrollView(

@@ -21,7 +21,7 @@ class Recipes {
       title: json.stringValue('title'),
       readyInMinutes: json.intValue('readyInMinutes'),
       image: json.stringValue('image'),
-      summary: json.stringValue('summary'),
+      summary: json.stringValue('summary').removeTextHtml(),
     );
   }
 
