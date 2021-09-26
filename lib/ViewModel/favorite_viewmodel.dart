@@ -8,6 +8,8 @@ class EventRecipeViewmodel {
   BehaviorSubject<Recipes> _subjectBool = BehaviorSubject<Recipes>();
   List<Recipes> listRecipe = [] ;
 
+  Set<Recipes> idRemove = {};
+
   init() async{
     listRecipe = await _recipeTable.selectAll();
     _subjectList.sink.add(listRecipe);
@@ -28,6 +30,14 @@ class EventRecipeViewmodel {
     _subjectList.sink.add(listRecipe);
   }
 
+  deleteListRecipes() async{
+    for(var i in idRemove){
+     await deleteRecipe(i);
+    }
+
+    idRemove.clear();
+  }
+
   deleteRecipe(Recipes recipes) async {
     await _recipeTable.deleteRecipe(recipes);
     listRecipe.remove(recipes);
@@ -38,6 +48,15 @@ class EventRecipeViewmodel {
     await _recipeTable.deleteAll();
     listRecipe = await _recipeTable.selectAll();
     _subjectList.sink.add(listRecipe);
+  }
+
+  bool checkId(int id){
+    for(var i in idRemove){
+      if(i.id == id){
+        return true;
+      }
+    }
+    return false;
   }
 
   BehaviorSubject<List<Recipes>> get subjectList => _subjectList;

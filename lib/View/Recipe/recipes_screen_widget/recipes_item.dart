@@ -1,3 +1,4 @@
+import 'package:cooking_recipe_app/View/Favorite/favorite_has_data_screen.dart';
 import 'package:cooking_recipe_app/View/Recipe/recipes_screen_widget/reaction_item.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +10,9 @@ class RecipesItem extends StatelessWidget {
   final int readyInMinutes;
   final String? image;
   final String? summary;
-
+  final Color? color;
   RecipesItem({required this.vegan, required this.aggregateLikes, required this.id, required this.title,
-      required this.readyInMinutes, required this.image, required this.summary});
-
+      required this.readyInMinutes, required this.image, required this.summary, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,8 @@ class RecipesItem extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
+
+      color: color,
       child: Container(
         decoration:  BoxDecoration(
             border: Border.all(width: 1 , color: Colors.grey.withOpacity(0.3)),
