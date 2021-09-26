@@ -97,6 +97,7 @@ Widget _itemIngredients(
                 Text(
                   '$name',
                   style: Theme.of(context).textTheme.bodyText1?.copyWith(fontWeight: FontWeight.w600, fontSize: 22),
+
                 ),
                 SizedBox(
                   height: 15,

@@ -10,7 +10,6 @@ ThemeData lightMode = ThemeData(
       bodyText2: TextStyle()).apply(
         bodyColor: Colors.black87,
         displayColor: Colors.blue,
-      fontFamily: 'Roboto',
       ),
       appBarTheme: AppBarTheme(
         iconTheme: IconThemeData(color: bgrlighMode),

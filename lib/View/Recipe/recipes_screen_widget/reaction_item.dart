@@ -39,13 +39,13 @@ class ReactionItem extends StatelessWidget {
         vegan
             ? Image.asset(
                 '$icons/eco_on.png',
-                height: 20,
-                width: 20,
+                height: 24,
+                width: 24,
               )
             : Image.asset(
                 '$icons/eco_off.png',
-                height: 20,
-                width: 20,
+                height: 24,
+                width: 24,
               ),
         Text(
           'Vegan',

@@ -70,7 +70,7 @@ class RecipesItem extends StatelessWidget {
                         child: Text(
                           '$summary',
                           maxLines: 3,
-                          style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 12),
+                          style: Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: 14),
                         ),
                       ),
                       Expanded(

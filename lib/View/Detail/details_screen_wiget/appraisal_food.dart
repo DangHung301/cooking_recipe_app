@@ -31,6 +31,7 @@ class AppraisalFood extends StatelessWidget {
       width: size.width,
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             '$title',
@@ -98,11 +99,11 @@ Widget _subAppraisal({required String title, required bool status,required Build
       status
           ? Text(
               '$title',
-              style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.green),
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.green, fontSize: 13),
             )
           : Text(
               '$title',
-              style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.grey),
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.grey, fontSize: 13),
             )
     ],
   );

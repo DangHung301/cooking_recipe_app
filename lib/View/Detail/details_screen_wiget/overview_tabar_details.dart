@@ -106,7 +106,7 @@ class _OverviewTabarDetailsState extends State<OverviewTabarDetails> {
                         cheap: data.cheap,
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 15,
                       ),
                       Container(
                         width: size.width,
@@ -117,14 +117,14 @@ class _OverviewTabarDetailsState extends State<OverviewTabarDetails> {
                           children: [
                             Text(
                               'Description',
-                              style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 13, fontStyle: FontStyle.italic),
+                              style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 15, fontStyle: FontStyle.italic),
                             ),
                             SizedBox(
                               height: 15,
                             ),
                             Text(
                               '${snapshot.data?.summary}',
-                              style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 16),
+                              style: Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: 16),
                             )
                           ],
                         ),
@@ -153,7 +153,7 @@ class _OverviewTabarDetailsState extends State<OverviewTabarDetails> {
         ),
         Text(
           '$content',
-          style: Theme.of(context).textTheme.bodyText1?.copyWith(color: colorIcon, fontWeight: FontWeight.w400),
+          style: Theme.of(context).textTheme.bodyText1?.copyWith(color: colorIcon, fontWeight: FontWeight.w400,),
         ),
       ],
     );
